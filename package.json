@@ -18,7 +18,8 @@
     "dist"
   ],
   "scripts": {
-    "build": "rimraf dist && tsc -p tsconfig.prod.json",
+    "build": "rimraf dist && tsc -p tsconfig.prod.json && yarn build:cpjs",
+    "build:cpjs": "find lib -name '*.js' | cpio -p dist",
     "test": "jest --coverage",
     "cz": "git-cz"
   },
