@@ -141,6 +141,15 @@ export function convertJsonSchemaToSureType(
 		topLevelType: '',
 	};
 
+	const definedDefinitions = Object.keys( definitions );
+	[ ...cyclic, ...nonCyclic ].forEach( definition =>
+	{
+		if ( !definedDefinitions.includes( definition ) )
+		{
+			throw new MissingReferenceError( definition, coreContext.meta( ) );
+		}
+	} );
+
 	const jsonSchemaAsCoreTypes = convertJsonSchemaToCoreTypes( jsonSchema );
 	const coreTypes = simplify( jsonSchemaAsCoreTypes.data );
 
