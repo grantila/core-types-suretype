@@ -1,5 +1,7 @@
+import { MissingReferenceError } from 'core-types'
 import { convertJsonSchemaToSureType } from './json-schema-to-suretype'
-import { JsonSchemaToSuretypeOptions } from './types';
+import { JsonSchemaToSuretypeOptions } from './types'
+
 
 describe( "convertJsonSchemaToSureType", ( ) =>
 {
@@ -219,5 +221,46 @@ describe( "convertJsonSchemaToSureType", ( ) =>
 
 			expect( data ).toMatchSnapshot( );
 		}
+	} );
+
+	it( "should fail properly on missing ref", ( ) =>
+	{
+		const definitions = { User: { $ref: '#/definitions/Link' } } as any;
+
+		const thrower = ( ) =>
+			convertJsonSchemaToSureType(
+				{ definitions },
+				{ }
+			);
+
+		expect( thrower ).toThrowError( MissingReferenceError );
+		expect( thrower ).toThrowError( /Link/ );
+	} );
+
+	it( "should add user package header properly", ( ) =>
+	{
+		const definitions = { User: { type: "string" } } as any;
+
+		const options: JsonSchemaToSuretypeOptions = {
+			useUnknown: true,
+			inlineTypes: true,
+			exportSchema: true,
+			exportType: true,
+			exportValidator: true,
+			exportEnsurer: true,
+			exportTypeGuard: true,
+			forwardSchema: true,
+			userPackage: 'my-package',
+			userPackageUrl: 'https://my-package.com',
+		};
+
+		const { data, convertedTypes } = convertJsonSchemaToSureType(
+			{ definitions },
+			options
+		);
+
+		expect( convertedTypes.sort( ) ).toStrictEqual( [ 'User' ] );
+
+		expect( data ).toMatchSnapshot( );
 	} );
 } );

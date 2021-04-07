@@ -41,7 +41,7 @@
     "@types/json-schema": "^7.0.7",
     "core-types": "^1.8.0",
     "core-types-json-schema": "^1.5.0",
-    "core-types-ts": "^1.2.0",
+    "core-types-ts": "^1.2.1",
     "json-schema-cycles": "^1.0.0",
     "jsonpos": "^1.1.0",
     "openapi-json-schema": "^1.1.1",
