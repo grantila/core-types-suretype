@@ -124,7 +124,7 @@ import { convertSureTypeToCoreTypes } from 'core-types-suretype'
 
 let sourceCode; // This source code comes from somewhere
 
-const { data: doc } = convertSureTypeToCoreTypes( sourceCode, opts );
+const { data: doc } = await convertSureTypeToCoreTypes( sourceCode, opts );
 ```
 
 An optional second argument can be provided of the type (this is the same type used to convert to JSON Schema, hence the name):
@@ -164,7 +164,7 @@ import { convertSureTypeToJsonSchema } from 'core-types-suretype'
 
 let sourceCode; // This source code comes from somewhere
 
-const { data: jsonSchema } = convertSureTypeToJsonSchema( sourceCode, opts );
+const { data: jsonSchema } = await convertSureTypeToJsonSchema( sourceCode, opts );
 ```
 
 The optional `opts` argument is the same as in `convertSureTypeToCoreTypes`.
