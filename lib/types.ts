@@ -107,6 +107,16 @@ export interface JsonSchemaToSuretypeOptions
 	 *  - `error`: Throw an error
 	 */
 	unsupported?: 'ignore' | 'warn' | 'error';
+
+
+	/**
+	 * What to do when detecting an unresolvable reference
+	 *
+	 *  - `ignore`: Ignore; skip type or cast to any
+	 *  - `warn`: Same as 'ignore', but warn (default)
+	 *  - `error`: Throw an error
+	 */
+	missingReference?: 'ignore' | 'warn' | 'error';
 }
 
 export interface SuretypeToJsonSchemaOptions

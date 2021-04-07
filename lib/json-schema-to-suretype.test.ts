@@ -225,16 +225,47 @@ describe( "convertJsonSchemaToSureType", ( ) =>
 
 	it( "should fail properly on missing ref", ( ) =>
 	{
-		const definitions = { User: { $ref: '#/definitions/Link' } } as any;
+		const definitions = {
+			User: {
+				type: 'object',
+				properties: {
+					prop: { $ref: '#/definitions/Link' },
+				},
+			},
+		} as any;
 
 		const thrower = ( ) =>
 			convertJsonSchemaToSureType(
 				{ definitions },
-				{ }
+				{ missingReference: 'error' }
 			);
 
 		expect( thrower ).toThrowError( MissingReferenceError );
 		expect( thrower ).toThrowError( /Link/ );
+	} );
+
+	it( "should warn and ignore on missing ref", ( ) =>
+	{
+		const definitions = {
+			User: {
+				type: 'object',
+				properties: {
+					prop: { $ref: '#/definitions/Link' },
+				},
+			},
+		} as any;
+
+		const warn = jest.fn( );
+		const result = convertJsonSchemaToSureType(
+			{ definitions },
+			{ warn }
+		);
+
+		const { data, convertedTypes, notConvertedTypes } = result;
+		expect( convertedTypes.sort( ) ).toStrictEqual( [ 'Link', 'User' ] );
+		expect( notConvertedTypes ).toStrictEqual( [ ] );
+		expect( warn.mock.calls[ 0 ][ 0 ] ).toMatch( /missing type.*Link/ );
+		expect( data ).toMatchSnapshot( );
 	} );
 
 	it( "should add user package header properly", ( ) =>

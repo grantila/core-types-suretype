@@ -104,6 +104,7 @@ export function convertJsonSchemaToSureType(
 		exportTypeGuard = true,
 
 		unsupported = 'warn',
+		missingReference = 'warn',
 	} = opts;
 
 	const inlineTypes = forwardSchema || _inlineTypes;
@@ -146,11 +147,20 @@ export function convertJsonSchemaToSureType(
 	{
 		if ( !definedDefinitions.includes( definition ) )
 		{
-			throw new MissingReferenceError( definition, coreContext.meta( ) );
+			if ( missingReference === 'error' )
+				throw new MissingReferenceError(
+					definition,
+					coreContext.meta( )
+				);
+			else if ( missingReference === 'warn' )
+				coreContext.warn(
+					`Reference to missing type: ${definition}, ignoring`
+				);
+			definitions[ definition ] = { }; // Becomes any/unknown
 		}
 	} );
 
-	const jsonSchemaAsCoreTypes = convertJsonSchemaToCoreTypes( jsonSchema );
+	const jsonSchemaAsCoreTypes = convertJsonSchemaToCoreTypes( json );
 	const coreTypes = simplify( jsonSchemaAsCoreTypes.data );
 
 	Object.keys( definitions )
