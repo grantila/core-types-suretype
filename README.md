@@ -12,7 +12,11 @@ This package provides conversion functions between [`core-types`][core-types-git
 
 *You probably don't want to use this package directly, but rather [`typeconv`][typeconv-github-url] which uses this package to convert between TypeScript, JSON Schema, Open API, GraphQL and suretype.*
 
-This package converts either from core-types or JSON Schema **to** suretype validators. When converting from JSON Schema, the *value constraints* are maintained. It can also convert from TypeScript/JavaScript files exporting suretype validators, as long as they are `require()`able (i.e. have all their dependencies).
+This package converts either from core-types *or* JSON Schema, when converting *to* suretype validators. It also converts either to core-types *or* JSON Schema when converting *from* suretype.
+
+When converting to and from JSON Schema (rather than core-types), the *value constraints* are maintained.
+
+It can convert from TypeScript/JavaScript files exporting suretype validators, as long as they are `require()`able (i.e. have all their dependencies installed).
 
 
 ## See
