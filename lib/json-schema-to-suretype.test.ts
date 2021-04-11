@@ -99,8 +99,8 @@ describe( "convertJsonSchemaToSureType", ( ) =>
 			}
 		);
 
-		expect( convertedTypes )
-			.toStrictEqual( [ 'Email', 'User', 'Link', 'Product' ] );
+		expect( convertedTypes.sort( ) )
+			.toStrictEqual( [ 'Email', 'User', 'Link', 'Product' ].sort( ) );
 
 		expect( data ).toMatchSnapshot( );
 	} );

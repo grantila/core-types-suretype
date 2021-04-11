@@ -18,7 +18,6 @@ import { suretype, v, raw, compile, TypeOf } from 'suretype';
  */
 const rawSchemaObject = {
     definitions: {
-        Email: {},
         User: {
             type: \\"object\\",
             description: \\"The User type\\\\nyada yada\\",
@@ -107,37 +106,10 @@ const rawSchemaObject = {
             },
             required: [\\"obj\\", \\"arr\\", \\"num\\", \\"bool\\"],
             additionalProperties: false
-        }
+        },
+        Email: {}
     }
 };
-
-/* The validation schema for a Email*/
-export const schemaEmail = raw<Email>(rawSchemaObject, \\"Email\\");
-
-export type Email = any;
-
-/**
- * ## Validate that a variable is a Email
- *
- * @returns ValidationResult
- */
-export const validateEmail = compile(schemaEmail);
-
-/**
- * ## Ensure a variable is a Email
- *
- * This call will throw a ValidationError if the variable isn't a Email.
- *
- * If the variable **is** a Email, the returned variable will be of that type.
- */
-export const ensureEmail = compile<typeof schemaEmail, Email>(schemaEmail, { ensure: true });
-
-/**
- * ## Validates that a variable is a Email
- *
- * @returns boolean
- */
-export const isEmail = compile(schemaEmail, { simple: true });
 
 /* The validation schema for a User*/
 export const schemaUser = raw<User>(rawSchemaObject, \\"User\\");
@@ -203,6 +175,34 @@ export const ensureUser = compile<typeof schemaUser, User>(schemaUser, { ensure:
  * @returns boolean
  */
 export const isUser = compile(schemaUser, { simple: true });
+
+/* The validation schema for a Email*/
+export const schemaEmail = raw<Email>(rawSchemaObject, \\"Email\\");
+
+export type Email = any;
+
+/**
+ * ## Validate that a variable is a Email
+ *
+ * @returns ValidationResult
+ */
+export const validateEmail = compile(schemaEmail);
+
+/**
+ * ## Ensure a variable is a Email
+ *
+ * This call will throw a ValidationError if the variable isn't a Email.
+ *
+ * If the variable **is** a Email, the returned variable will be of that type.
+ */
+export const ensureEmail = compile<typeof schemaEmail, Email>(schemaEmail, { ensure: true });
+
+/**
+ * ## Validates that a variable is a Email
+ *
+ * @returns boolean
+ */
+export const isEmail = compile(schemaEmail, { simple: true });
 
 /* The validation schema for a Link*/
 export const schemaLink = suretype({

@@ -1,12 +1,14 @@
-import { analyzeTypes } from 'json-schema-cycles'
+import { analyzeTypesFast } from 'json-schema-cycles'
 import * as toposort from 'toposort'
 
 
 export function analyzeSchema( schema: any )
 {
-	const { graph, all, dependencies } = analyzeTypes( schema );
+	const { graph, cyclic, dependencies, dependents } =
+		analyzeTypesFast( schema );
 
-	const cycledSchemas = new Set( [ ...dependencies, ...all ] );
+	const cycledSchemas =
+		new Set( [ ...cyclic, ...dependencies, ...dependents ] );
 
 	const nonCyclic = graph
 		.filter( ( [ from ] ) => !cycledSchemas.has( from ) )

@@ -57,16 +57,20 @@ describe( "analyzeSchema", ( ) =>
 			}
 		};
 
-		expect( analyzeSchema( jsonSchema ) ).toStrictEqual( {
-			nonCyclic: [ 'Product', 'Cart', 'Purchases' ],
-			cyclic: [
+		const { cyclic, nonCyclic } = analyzeSchema( jsonSchema );
+
+		expect( nonCyclic ).toStrictEqual( [ 'Product', 'Cart' ] );
+		expect( cyclic.sort( ) ).toStrictEqual(
+			[
 				'Link',
 				'User',
 				'Message',
 				'Subscriber',
 				'Actions',
 				'DM',
-			],
-		} );
+				'Purchases',
+			]
+			.sort( )
+		);
 	} );
 } );
