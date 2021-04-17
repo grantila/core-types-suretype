@@ -62,5 +62,17 @@
     "commitizen": {
       "path": "./node_modules/cz-conventional-changelog"
     }
+  },
+  "jest": {
+    "preset": "ts-jest",
+    "testEnvironment": "node",
+    "coverageReporters": [ "lcov", "text", "html" ],
+    "collectCoverageFrom": [ "<rootDir>/lib/**" ],
+    "coveragePathIgnorePatterns": [
+      "/node_modules/",
+      "/__snapshots__/",
+      "/read-exports/",
+      "/test/"
+    ]
   }
 }
