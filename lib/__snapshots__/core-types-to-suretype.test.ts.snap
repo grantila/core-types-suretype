@@ -11,7 +11,7 @@ exports[`core-types-to-ts complex type 1`] = `
 
 import { suretype, v, compile } from 'suretype';
 
-/* The validation schema for a User*/
+/** The validation schema for a User */
 export const schemaUser = suretype({
     name: \\"User\\"
 }, v.string());
@@ -41,7 +41,7 @@ export const ensureUser = compile<typeof schemaUser, User>(schemaUser, { ensure:
  */
 export const isUser = compile(schemaUser, { simple: true });
 
-/* The validation schema for a foo*/
+/** The validation schema for a foo */
 export const schemaFoo = suretype({
     name: \\"foo\\"
 }, v.object({
@@ -114,7 +114,7 @@ exports[`core-types-to-ts should write annotations properly 1`] = `
 
 import { suretype, v, compile, annotate } from 'suretype';
 
-/* The validation schema for a Thing*/
+/** The validation schema for a Thing */
 export const schemaThing = suretype({
     name: \\"Thing\\"
 }, v.unknown());
@@ -144,7 +144,7 @@ export const ensureThing = compile<typeof schemaThing, Thing>(schemaThing, { ens
  */
 export const isThing = compile(schemaThing, { simple: true });
 
-/* The validation schema for a Thingy*/
+/** The validation schema for a Thingy */
 export const schemaThingy = suretype({
     name: \\"Thingy\\",
     title: \\"Thing ref\\"
@@ -155,7 +155,7 @@ export const schemaThingy = suretype({
         title: \\"Just a number\\"
     }, v.number())]));
 
-export type Thingy = Thing | /* Just a number*/
+export type Thingy = Thing | /** Just a number */
 number;
 
 /**
@@ -181,7 +181,7 @@ export const ensureThingy = compile<typeof schemaThingy, Thingy>(schemaThingy, {
  */
 export const isThingy = compile(schemaThingy, { simple: true });
 
-/* The validation schema for a User*/
+/** The validation schema for a User */
 export const schemaUser = suretype({
     name: \\"User\\",
     title: \\"User type\\",
@@ -241,7 +241,7 @@ export const ensureUser = compile<typeof schemaUser, User>(schemaUser, { ensure:
  */
 export const isUser = compile(schemaUser, { simple: true });
 
-/* The validation schema for a ChatLine*/
+/** The validation schema for a ChatLine */
 export const schemaChatLine = suretype({
     name: \\"ChatLine\\",
     title: \\"A chat line\\"
@@ -254,7 +254,7 @@ export const schemaChatLine = suretype({
     }, v.string().required())
 }));
 
-/* A chat line*/
+/** A chat line */
 export interface ChatLine {
     user: User;
     /**
@@ -300,7 +300,7 @@ exports[`core-types-to-ts simple string union of separate types 1`] = `
 
 import { suretype, v, compile } from 'suretype';
 
-/* The validation schema for a bar*/
+/** The validation schema for a bar */
 export const schemaBar = suretype({
     name: \\"bar\\"
 }, v.string().const(\\"bar\\"));
@@ -330,7 +330,7 @@ export const ensureBar = compile<typeof schemaBar, bar>(schemaBar, { ensure: tru
  */
 export const isBar = compile(schemaBar, { simple: true });
 
-/* The validation schema for a foo*/
+/** The validation schema for a foo */
 export const schemaFoo = suretype({
     name: \\"foo\\"
 }, v.anyOf([schemaBar, v.string().enum(\\"foo\\", \\"baz\\")]));
@@ -373,7 +373,7 @@ exports[`core-types-to-ts simple type 1`] = `
 
 import { suretype, v, compile } from 'suretype';
 
-/* The validation schema for a foo*/
+/** The validation schema for a foo */
 export const schemaFoo = suretype({
     name: \\"foo\\"
 }, v.string());
@@ -416,7 +416,7 @@ exports[`core-types-to-ts used in readme 1`] = `
 
 import { suretype, v, compile, annotate } from 'suretype';
 
-/* The validation schema for a User*/
+/** The validation schema for a User */
 export const schemaUser = suretype({
     name: \\"User\\",
     title: \\"User type\\",
@@ -433,7 +433,7 @@ export const schemaUser = suretype({
  * This type holds the user information, such as name
  */
 export interface User {
-    /* The real name*/
+    /** The real name */
     name: string;
 }
 
@@ -460,7 +460,7 @@ export const ensureUser = compile<typeof schemaUser, User>(schemaUser, { ensure:
  */
 export const isUser = compile(schemaUser, { simple: true });
 
-/* The validation schema for a ChatLine*/
+/** The validation schema for a ChatLine */
 export const schemaChatLine = suretype({
     name: \\"ChatLine\\",
     title: \\"A chat line\\"
@@ -469,7 +469,7 @@ export const schemaChatLine = suretype({
     line: v.string().required()
 }));
 
-/* A chat line*/
+/** A chat line */
 export interface ChatLine {
     user: User;
     line: string;
