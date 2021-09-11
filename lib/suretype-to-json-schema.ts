@@ -29,7 +29,7 @@ export async function convertSuretypeToJsonSchema(
 
 	if ( error )
 	{
-		if ( error.name.startsWith( 'Duplicate' ) && nameConflict === 'warn' )
+		if ( error.name?.startsWith( 'Duplicate' ) && nameConflict === 'warn' )
 			warn( error.message, error );
 		else
 			throw error;

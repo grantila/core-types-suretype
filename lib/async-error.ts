@@ -8,7 +8,7 @@ export interface CaughtErrorSuccess< T >
 export interface CaughtErrorFailed
 {
 	result: undefined;
-	error: Error;
+	error: any;
 }
 
 export type CaughtError< T > =
