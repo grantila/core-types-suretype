@@ -145,12 +145,12 @@ export interface User {
     email?: Email;
     bool: boolean;
     nul?: null;
-    any_of?: User | string;
-    all_of?: User & {
+    any_of?: string | User;
+    all_of?: {
         /** This is the x number */
         x?: number;
         [key: string]: any;
-    };
+    } & User;
 }
 
 /**
@@ -613,11 +613,11 @@ export interface User {
     bool: boolean;
     nul?: null;
     any_of?: string | number;
-    all_of?: string & {
+    all_of?: {
         /** This is the x number */
         x?: number;
         [key: string]: any;
-    };
+    } & string;
 }
 
 /**
@@ -1622,11 +1622,11 @@ export interface User {
     bool: boolean;
     nul?: null;
     any_of?: string | number;
-    all_of?: string & {
+    all_of?: {
         /** This is the x number */
         x?: number;
         [key: string]: any;
-    };
+    } & string;
 }
 
 /**

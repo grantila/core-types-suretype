@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`core-types-to-ts complex type 1`] = `
+exports[`core-types-to-suretype complex type 1`] = `
 "/* tslint:disable */
 /* eslint-disable */
 /**
@@ -103,7 +103,7 @@ export const isFoo = compile(schemaFoo, { simple: true });
 "
 `;
 
-exports[`core-types-to-ts should write annotations properly 1`] = `
+exports[`core-types-to-suretype should write annotations properly 1`] = `
 "/* tslint:disable */
 /* eslint-disable */
 /**
@@ -289,7 +289,7 @@ export const isChatLine = compile(schemaChatLine, { simple: true });
 "
 `;
 
-exports[`core-types-to-ts simple string union of separate types 1`] = `
+exports[`core-types-to-suretype simple string union of separate types 1`] = `
 "/* tslint:disable */
 /* eslint-disable */
 /**
@@ -362,7 +362,7 @@ export const isFoo = compile(schemaFoo, { simple: true });
 "
 `;
 
-exports[`core-types-to-ts simple type 1`] = `
+exports[`core-types-to-suretype simple type 1`] = `
 "/* tslint:disable */
 /* eslint-disable */
 /**
@@ -405,7 +405,7 @@ export const isFoo = compile(schemaFoo, { simple: true });
 "
 `;
 
-exports[`core-types-to-ts used in readme 1`] = `
+exports[`core-types-to-suretype used in readme 1`] = `
 "/* tslint:disable */
 /* eslint-disable */
 /**

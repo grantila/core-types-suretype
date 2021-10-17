@@ -20,7 +20,7 @@ const options: JsonSchemaToSuretypeOptions = {
 	forwardSchema: false,
 };
 
-describe( "core-types-to-ts", ( ) =>
+describe( "core-types-to-suretype", ( ) =>
 {
 	it( "simple type", ( ) =>
 	{
