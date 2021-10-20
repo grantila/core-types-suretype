@@ -20,9 +20,9 @@ const options: JsonSchemaToSuretypeOptions = {
 	forwardSchema: false,
 };
 
-describe( "core-types-to-suretype", ( ) =>
+describe( 'core-types-to-suretype', ( ) =>
 {
-	it( "simple type", ( ) =>
+	it( 'simple type', ( ) =>
 	{
 		const { convertedTypes, notConvertedTypes, data: ts } =
 			convertCoreTypesToSureType( wrapDocument( [
@@ -36,7 +36,7 @@ describe( "core-types-to-suretype", ( ) =>
 		expect( ts ).toMatchSnapshot( );
 	} );
 
-	it( "simple string union of separate types", ( ) =>
+	it( 'simple string union of separate types', ( ) =>
 	{
 		const { convertedTypes, notConvertedTypes, data: ts } =
 			convertCoreTypesToSureType( wrapDocument( [
@@ -55,7 +55,7 @@ describe( "core-types-to-suretype", ( ) =>
 						},
 						{
 							type: 'string',
-							enum: [ "foo", "baz" ],
+							enum: [ 'foo', 'baz' ],
 						}
 					]
 				}
@@ -65,7 +65,7 @@ describe( "core-types-to-suretype", ( ) =>
 		expect( ts ).toMatchSnapshot( );
 	} );
 
-	it( "complex type", ( ) =>
+	it( 'complex type', ( ) =>
 	{
 		const res = convertCoreTypesToSureType( wrapDocument( [
 			{
@@ -138,18 +138,19 @@ describe( "core-types-to-suretype", ( ) =>
 		expect( ts ).toMatchSnapshot( );
 	} );
 
-	it( "used in readme", ( ) =>
+	it( 'used in readme', ( ) =>
 	{
 		const res = convertCoreTypesToSureType( wrapDocument( [
 			{
 				name: 'User',
-				title: 'User type',
+				title: 'User',
 				description:
+					'User type\n\n' +
 					'This type holds the user information, such as name',
 				type: 'object',
 				properties: {
 					name: {
-						node: { type: 'string', title: 'The real name' },
+						node: { type: 'string', description: 'The real name' },
 						required: true
 					},
 				},
@@ -157,7 +158,8 @@ describe( "core-types-to-suretype", ( ) =>
 			},
 			{
 				name: 'ChatLine',
-				title: 'A chat line',
+				title: 'ChatLine',
+				description: 'A chat line',
 				type: 'object',
 				properties: {
 					user: {
@@ -176,13 +178,14 @@ describe( "core-types-to-suretype", ( ) =>
 		expect( ts ).toMatchSnapshot( );
 	} );
 
-	it( "should write annotations properly", ( ) =>
+	it( 'should write annotations properly', ( ) =>
 	{
 		const res = convertCoreTypesToSureType( wrapDocument( [
 			{
 				name: 'User',
-				title: 'User type',
+				title: 'User',
 				description:
+					'User type\n\n' +
 					'This type holds the user information, such as name',
 				examples: [ '{ name: "Joe" }' ],
 				default: '{ user: "" }',
@@ -192,8 +195,10 @@ describe( "core-types-to-suretype", ( ) =>
 					name: {
 						node: {
 							type: 'string',
-							title: 'The real name',
-							description: 'Must be a valid name, not */'
+							title: 'User.name',
+							description:
+								'The real name\n\n' +
+								'Must be a valid name, not */'
 						},
 						required: true
 					},
@@ -202,12 +207,14 @@ describe( "core-types-to-suretype", ( ) =>
 			},
 			{
 				name: 'ChatLine',
-				title: 'A chat line',
+				title: 'ChatLine',
+				description: 'A chat line',
 				type: 'object',
 				properties: {
 					user: {
 						node: {
-							title: 'User ref',
+							title: 'ChatLine.user',
+							description: 'User ref',
 							type: 'ref',
 							ref: 'User'
 						},
@@ -228,19 +235,22 @@ describe( "core-types-to-suretype", ( ) =>
 				type: 'any',
 			},
 			{
-				title: 'Thing ref',
+				title: 'Thingy',
+				description: 'Thing ref',
 				name: 'Thingy',
 				type: 'or',
 				or: [
 					{
 						type: 'ref',
 						ref: 'Thing',
-						title: 'Thing is the preferred type',
+						title: 'Thingy',
+						description: 'Thing is the preferred type',
 						see: 'The Thing documentation',
 					},
 					{
 						type: 'number',
-						title: 'Just a number',
+						title: 'Thingy',
+						description: 'Just a number',
 					},
 				],
 			},

@@ -3,9 +3,9 @@ import { convertJsonSchemaToSureType } from './json-schema-to-suretype'
 import { JsonSchemaToSuretypeOptions } from './types'
 
 
-describe( "convertJsonSchemaToSureType", ( ) =>
+describe( 'convertJsonSchemaToSureType', ( ) =>
 {
-	it( "export recursive and non-recursive at once", ( ) =>
+	it( 'export recursive and non-recursive at once', ( ) =>
 	{
 		const definitions = {
 			Email: {},
@@ -15,11 +15,11 @@ describe( "convertJsonSchemaToSureType", ( ) =>
 				properties: {
 					obj: {
 						type: 'object',
-						description: 'This is a typical foo',
-						title: "This is a relatively long title, " +
-							"triggering line breaks",
+						description: 'This is a relatively long title, ' +
+							'triggering line breaks\n\n' +
+							'This is a typical foo',
 						default: {
-							prop: "there is currently no default provided..."
+							prop: 'there is currently no default provided...'
 						},
 						properties: { prop: { type: 'string' } }
 					},
@@ -45,13 +45,13 @@ describe( "convertJsonSchemaToSureType", ( ) =>
 					int: {
 						type: 'integer', enum: [ 1, 2, 3, 4, 5, 10 ]
 					},
-					email: { $ref: "#/definitions/Email" },
+					email: { $ref: '#/definitions/Email' },
 					bool: { type: 'boolean', const: false },
 					nul: { type: 'null' },
 					any_of: {
 						anyOf: [
 							{ type: 'string' },
-							{ $ref: "#/definitions/User", description: 'foo' }
+							{ $ref: '#/definitions/User', description: 'foo' }
 						]
 					},
 					all_of: {
@@ -65,7 +65,7 @@ describe( "convertJsonSchemaToSureType", ( ) =>
 									}
 								}
 							},
-							{ $ref: "#/definitions/User" }
+							{ $ref: '#/definitions/User' }
 						]
 					},
 				},
@@ -81,7 +81,7 @@ describe( "convertJsonSchemaToSureType", ( ) =>
 			},
 			Product: {
 				type: 'object',
-				properties: { link: { $ref: "#/definitions/Link" } },
+				properties: { link: { $ref: '#/definitions/Link' } },
 			},
 		} as any;
 
@@ -105,7 +105,7 @@ describe( "convertJsonSchemaToSureType", ( ) =>
 		expect( data ).toMatchSnapshot( );
 	} );
 
-	it( "non-recursive types export matrix", ( ) =>
+	it( 'non-recursive types export matrix', ( ) =>
 	{
 		const definitions = {
 			Email: {},
@@ -115,11 +115,11 @@ describe( "convertJsonSchemaToSureType", ( ) =>
 				properties: {
 					obj: {
 						type: 'object',
-						description: 'This is a typical foo',
-						title: "This is a relatively long title, " +
-							"triggering line breaks",
+						description: 'This is a relatively long title, ' +
+							'triggering line breaks\n\n' +
+							'This is a typical foo',
 						default: {
-							prop: "there is currently no default provided..."
+							prop: 'there is currently no default provided...'
 						},
 						properties: { prop: { type: 'string' } }
 					},
@@ -145,7 +145,7 @@ describe( "convertJsonSchemaToSureType", ( ) =>
 					int: {
 						type: 'integer', enum: [ 1, 2, 3, 4, 5, 10 ]
 					},
-					email: { $ref: "#/definitions/Email" },
+					email: { $ref: '#/definitions/Email' },
 					bool: { type: 'boolean', const: false },
 					nul: { type: 'null' },
 					any_of: {
@@ -181,7 +181,7 @@ describe( "convertJsonSchemaToSureType", ( ) =>
 			},
 			Product: {
 				type: 'object',
-				properties: { link: { $ref: "#/definitions/Link" } },
+				properties: { link: { $ref: '#/definitions/Link' } },
 			},
 		} as any;
 
@@ -223,7 +223,7 @@ describe( "convertJsonSchemaToSureType", ( ) =>
 		}
 	} );
 
-	it( "should fail properly on missing ref", ( ) =>
+	it( 'should fail properly on missing ref', ( ) =>
 	{
 		const definitions = {
 			User: {
@@ -244,7 +244,7 @@ describe( "convertJsonSchemaToSureType", ( ) =>
 		expect( thrower ).toThrowError( /Link/ );
 	} );
 
-	it( "should warn and ignore on missing ref", ( ) =>
+	it( 'should warn and ignore on missing ref', ( ) =>
 	{
 		const definitions = {
 			User: {
@@ -268,7 +268,7 @@ describe( "convertJsonSchemaToSureType", ( ) =>
 		expect( data ).toMatchSnapshot( );
 	} );
 
-	it( "should add user package header properly", ( ) =>
+	it( 'should add user package header properly', ( ) =>
 	{
 		const definitions = { User: { type: "string" } } as any;
 

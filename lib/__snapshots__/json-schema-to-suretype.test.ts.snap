@@ -24,8 +24,7 @@ const rawSchemaObject = {
             properties: {
                 obj: {
                     type: \\"object\\",
-                    description: \\"This is a typical foo\\",
-                    title: \\"This is a relatively long title, triggering line breaks\\",
+                    description: \\"This is a relatively long title, triggering line breaks\\\\n\\\\nThis is a typical foo\\",
                     default: {
                         prop: \\"there is currently no default provided...\\"
                     },
@@ -383,8 +382,7 @@ export const schemaUser = suretype({
     description: \\"The User type\\\\nyada yada\\"
 }, v.object({
     obj: annotate({
-        title: \\"This is a relatively long title, triggering line breaks\\",
-        description: \\"This is a typical foo\\\\n\\\\n@default\\\\n    {\\\\n      \\\\\\"prop\\\\\\": \\\\\\"there is currently no default provided...\\\\\\"\\\\n    }\\"
+        description: \\"This is a relatively long title, triggering line breaks\\\\n\\\\nThis is a typical foo\\\\n\\\\n@default\\\\n    {\\\\n      \\\\\\"prop\\\\\\": \\\\\\"there is currently no default provided...\\\\\\"\\\\n    }\\"
     }, v.object({
         prop: v.string()
     }).additional(true).default({
@@ -555,8 +553,7 @@ export const schemaUser = suretype({
     description: \\"The User type\\\\nyada yada\\"
 }, v.object({
     obj: annotate({
-        title: \\"This is a relatively long title, triggering line breaks\\",
-        description: \\"This is a typical foo\\\\n\\\\n@default\\\\n    {\\\\n      \\\\\\"prop\\\\\\": \\\\\\"there is currently no default provided...\\\\\\"\\\\n    }\\"
+        description: \\"This is a relatively long title, triggering line breaks\\\\n\\\\nThis is a typical foo\\\\n\\\\n@default\\\\n    {\\\\n      \\\\\\"prop\\\\\\": \\\\\\"there is currently no default provided...\\\\\\"\\\\n    }\\"
     }, v.object({
         prop: v.string()
     }).additional(true).default({
@@ -753,8 +750,7 @@ const schemaUser = suretype({
     description: \\"The User type\\\\nyada yada\\"
 }, v.object({
     obj: annotate({
-        title: \\"This is a relatively long title, triggering line breaks\\",
-        description: \\"This is a typical foo\\\\n\\\\n@default\\\\n    {\\\\n      \\\\\\"prop\\\\\\": \\\\\\"there is currently no default provided...\\\\\\"\\\\n    }\\"
+        description: \\"This is a relatively long title, triggering line breaks\\\\n\\\\nThis is a typical foo\\\\n\\\\n@default\\\\n    {\\\\n      \\\\\\"prop\\\\\\": \\\\\\"there is currently no default provided...\\\\\\"\\\\n    }\\"
     }, v.object({
         prop: v.string()
     }).additional(true).default({
@@ -918,8 +914,7 @@ export const schemaUser = suretype({
     description: \\"The User type\\\\nyada yada\\"
 }, v.object({
     obj: annotate({
-        title: \\"This is a relatively long title, triggering line breaks\\",
-        description: \\"This is a typical foo\\\\n\\\\n@default\\\\n    {\\\\n      \\\\\\"prop\\\\\\": \\\\\\"there is currently no default provided...\\\\\\"\\\\n    }\\"
+        description: \\"This is a relatively long title, triggering line breaks\\\\n\\\\nThis is a typical foo\\\\n\\\\n@default\\\\n    {\\\\n      \\\\\\"prop\\\\\\": \\\\\\"there is currently no default provided...\\\\\\"\\\\n    }\\"
     }, v.object({
         prop: v.string()
     }).additional(true).default({
@@ -1062,8 +1057,7 @@ export const schemaUser = suretype({
     description: \\"The User type\\\\nyada yada\\"
 }, v.object({
     obj: annotate({
-        title: \\"This is a relatively long title, triggering line breaks\\",
-        description: \\"This is a typical foo\\\\n\\\\n@default\\\\n    {\\\\n      \\\\\\"prop\\\\\\": \\\\\\"there is currently no default provided...\\\\\\"\\\\n    }\\"
+        description: \\"This is a relatively long title, triggering line breaks\\\\n\\\\nThis is a typical foo\\\\n\\\\n@default\\\\n    {\\\\n      \\\\\\"prop\\\\\\": \\\\\\"there is currently no default provided...\\\\\\"\\\\n    }\\"
     }, v.object({
         prop: v.string()
     }).additional(true).default({
@@ -1193,8 +1187,7 @@ export const schemaUser = suretype({
     description: \\"The User type\\\\nyada yada\\"
 }, v.object({
     obj: annotate({
-        title: \\"This is a relatively long title, triggering line breaks\\",
-        description: \\"This is a typical foo\\\\n\\\\n@default\\\\n    {\\\\n      \\\\\\"prop\\\\\\": \\\\\\"there is currently no default provided...\\\\\\"\\\\n    }\\"
+        description: \\"This is a relatively long title, triggering line breaks\\\\n\\\\nThis is a typical foo\\\\n\\\\n@default\\\\n    {\\\\n      \\\\\\"prop\\\\\\": \\\\\\"there is currently no default provided...\\\\\\"\\\\n    }\\"
     }, v.object({
         prop: v.string()
     }).additional(true).default({
@@ -1328,8 +1321,7 @@ export const schemaUser = suretype({
     description: \\"The User type\\\\nyada yada\\"
 }, v.object({
     obj: annotate({
-        title: \\"This is a relatively long title, triggering line breaks\\",
-        description: \\"This is a typical foo\\\\n\\\\n@default\\\\n    {\\\\n      \\\\\\"prop\\\\\\": \\\\\\"there is currently no default provided...\\\\\\"\\\\n    }\\"
+        description: \\"This is a relatively long title, triggering line breaks\\\\n\\\\nThis is a typical foo\\\\n\\\\n@default\\\\n    {\\\\n      \\\\\\"prop\\\\\\": \\\\\\"there is currently no default provided...\\\\\\"\\\\n    }\\"
     }, v.object({
         prop: v.string()
     }).additional(true).default({
@@ -1411,8 +1403,7 @@ const rawSchemaObject = {
             properties: {
                 obj: {
                     type: \\"object\\",
-                    description: \\"This is a typical foo\\",
-                    title: \\"This is a relatively long title, triggering line breaks\\",
+                    description: \\"This is a relatively long title, triggering line breaks\\\\n\\\\nThis is a typical foo\\",
                     default: {
                         prop: \\"there is currently no default provided...\\"
                     },

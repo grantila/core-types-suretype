@@ -147,12 +147,14 @@ export const isThing = compile(schemaThing, { simple: true });
 /** The validation schema for a Thingy */
 export const schemaThingy = suretype({
     name: \\"Thingy\\",
-    title: \\"Thing ref\\"
+    title: \\"Thingy\\",
+    description: \\"Thing ref\\"
 }, v.anyOf([annotate({
-        title: \\"Thing is the preferred type\\",
-        description: \\"@see The Thing documentation\\"
+        title: \\"Thingy\\",
+        description: \\"Thing is the preferred type\\\\n\\\\n@see The Thing documentation\\"
     }, schemaThing), annotate({
-        title: \\"Just a number\\"
+        title: \\"Thingy\\",
+        description: \\"Just a number\\"
     }, v.number())]));
 
 export type Thingy = Thing | /** Just a number */
@@ -184,13 +186,13 @@ export const isThingy = compile(schemaThingy, { simple: true });
 /** The validation schema for a User */
 export const schemaUser = suretype({
     name: \\"User\\",
-    title: \\"User type\\",
+    title: \\"User\\",
     examples: [\\"[\\\\n  \\\\\\"{ name: \\\\\\\\\\\\\\"Joe\\\\\\\\\\\\\\" }\\\\\\"\\\\n]\\"],
-    description: \\"This type holds the user information, such as name\\\\n\\\\n@see http://username\\\\n\\\\n@default\\\\n    { user: \\\\\\"\\\\\\" }\\"
+    description: \\"User type\\\\n\\\\nThis type holds the user information, such as name\\\\n\\\\n@see http://username\\\\n\\\\n@default\\\\n    { user: \\\\\\"\\\\\\" }\\"
 }, v.object({
     name: annotate({
-        title: \\"The real name\\",
-        description: \\"Must be a valid name, not */\\"
+        title: \\"User.name\\",
+        description: \\"The real name\\\\n\\\\nMust be a valid name, not */\\"
     }, v.string().required())
 }).default(\\"{ user: \\\\\\"\\\\\\" }\\"));
 
@@ -244,10 +246,12 @@ export const isUser = compile(schemaUser, { simple: true });
 /** The validation schema for a ChatLine */
 export const schemaChatLine = suretype({
     name: \\"ChatLine\\",
-    title: \\"A chat line\\"
+    title: \\"ChatLine\\",
+    description: \\"A chat line\\"
 }, v.object({
     user: annotate({
-        title: \\"User ref\\"
+        title: \\"ChatLine.user\\",
+        description: \\"User ref\\"
     }, schemaUser),
     line: annotate({
         examples: [\\"This is a line\\"]
@@ -419,11 +423,11 @@ import { suretype, v, compile, annotate } from 'suretype';
 /** The validation schema for a User */
 export const schemaUser = suretype({
     name: \\"User\\",
-    title: \\"User type\\",
-    description: \\"This type holds the user information, such as name\\"
+    title: \\"User\\",
+    description: \\"User type\\\\n\\\\nThis type holds the user information, such as name\\"
 }, v.object({
     name: annotate({
-        title: \\"The real name\\"
+        description: \\"The real name\\"
     }, v.string().required())
 }));
 
@@ -463,7 +467,8 @@ export const isUser = compile(schemaUser, { simple: true });
 /** The validation schema for a ChatLine */
 export const schemaChatLine = suretype({
     name: \\"ChatLine\\",
-    title: \\"A chat line\\"
+    title: \\"ChatLine\\",
+    description: \\"A chat line\\"
 }, v.object({
     user: schemaUser,
     line: v.string().required()

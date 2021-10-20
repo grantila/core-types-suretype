@@ -200,9 +200,10 @@ export function convertJsonSchemaToSureType(
 				),
 				!isAnyCyclic ? { } :
 				{
-					title: 'These cyclic types need to be treated as raw ' +
-						'JSON Schema',
-					description: 'Cyclic types cannot be deduced from ' +
+					description:
+						'These cyclic types need to be treated as raw ' +
+						'JSON Schema\n\n' +
+						'Cyclic types cannot be deduced from ' +
 						'typeof in TypeScript',
 				}
 			)
@@ -427,8 +428,8 @@ function createRegularValidator(
 	return helpers.wrapAnnotations(
 		exportNode,
 		{
-			title: `## Validate that a variable is a ${typeName}`,
-			description: '@returns ValidationResult',
+			description: `## Validate that a variable is a ${typeName}\n\n` +
+				'@returns ValidationResult',
 		}
 	);
 }
@@ -472,8 +473,9 @@ function createEnsureValidator(
 	return helpers.wrapAnnotations(
 		exportNode,
 		{
-			title: `## Ensure a variable is a ${typeName}`,
 			description: [
+				`## Ensure a variable is a ${typeName}`,
+				'',
 				'This call will throw a ValidationError if the ' +
 					`variable isn't a ${typeName}.`,
 				'',
@@ -518,8 +520,8 @@ function createTypeGuardValidator(
 	return helpers.wrapAnnotations(
 		exportNode,
 		{
-			title: `## Validates that a variable is a ${typeName}`,
-			description: '@returns boolean',
+			description: `## Validates that a variable is a ${typeName}\n\n` +
+				'@returns boolean',
 		}
 	);
 }
@@ -558,7 +560,7 @@ function createRawValidatorSchema(
 		? exportNode
 		: helpers.wrapAnnotations(
 			exportNode,
-			{ title: `The validation schema for a ${typeName}` }
+			{ description: `The validation schema for a ${typeName}` }
 		);
 }
 
@@ -592,7 +594,7 @@ function createValidatorSchema(
 		? exportNode
 		: helpers.wrapAnnotations(
 			exportNode,
-			{ title: `The validation schema for a ${typeName}` }
+			{ description: `The validation schema for a ${typeName}` }
 		);
 }
 
