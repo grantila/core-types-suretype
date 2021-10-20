@@ -40,7 +40,7 @@
   "dependencies": {
     "@types/json-schema": "^7.0.9",
     "core-types": "^1.10.0",
-    "core-types-json-schema": "^1.6.1",
+    "core-types-json-schema": "^1.6.2",
     "core-types-ts": "^1.5.0",
     "json-schema-cycles": "^1.1.0",
     "jsonpos": "^1.1.0",
