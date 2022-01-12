@@ -358,7 +358,7 @@ function createImportHeader(
 		...( TypeOf ? [ 'TypeOf' ] : [ ] ),
 	]
 	.map( name =>
-		factory.createImportSpecifier( undefined, t.ident( name ) )
+		factory.createImportSpecifier( undefined, undefined, t.ident( name ) )
 	);
 	return factory.createImportDeclaration(
 		undefined, // decorators
