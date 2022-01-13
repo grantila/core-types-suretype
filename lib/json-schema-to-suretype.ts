@@ -102,7 +102,7 @@ export function convertJsonSchemaToSureType(
 		exportValidator = true,
 		exportEnsurer = true,
 		exportTypeGuard = true,
-    ajvOptions = {},
+		ajvOptions = {},
 
 		unsupported = 'warn',
 		missingReference = 'warn',
@@ -217,70 +217,70 @@ export function convertJsonSchemaToSureType(
 
 	const convertedTypes: Array< string > = [ ];
 
-  const ajvOptionsEntries = Object.entries(ajvOptions)
-  const hasCustomAjvOptions = !!ajvOptionsEntries.length
+	const ajvOptionsEntries = Object.entries(ajvOptions)
+	const hasCustomAjvOptions = !!ajvOptionsEntries.length
 
 	const statements = [
-    ...jsonSchemaChunk,
-    ...(hasCustomAjvOptions
-      ? [
-          createVariable(
-            "ajvOptions",
-            factory.createObjectLiteralExpression(
-              ajvOptionsEntries.map( ( [ key, value ] ) =>
-                factory.createPropertyAssignment(
-                  key,
-                  typeof value === 'string' ? t.string( value ) : value ? t.true( ) : t.false( )
-                )
-              )
-            )
-          ),
-        ]
-      : []),
-    ...orderedTypes.flatMap((name) => {
-      const isCyclic = cyclicSet.has(name)
+		...jsonSchemaChunk,
+		...(hasCustomAjvOptions
+			? [
+					createVariable(
+						"ajvOptions",
+						factory.createObjectLiteralExpression(
+							ajvOptionsEntries.map( ( [ key, value ] ) =>
+								factory.createPropertyAssignment(
+									key,
+									typeof value === 'string' ? t.string( value ) : value ? t.true( ) : t.false( )
+								)
+							)
+						)
+					),
+				]
+			: []),
+		...orderedTypes.flatMap((name) => {
+			const isCyclic = cyclicSet.has(name)
 
-      const schemaObject = definitions[name]
+			const schemaObject = definitions[name]
 
-      const ctx: Context = {
-        ...coreContext,
-        topLevelType: name,
-      }
+			const ctx: Context = {
+				...coreContext,
+				topLevelType: name,
+			}
 
-      const exports: Array<ts.Node> = []
+			const exports: Array<ts.Node> = []
 
-      const { validatorSchemaName, regularValidatorName, ensureValidatorName, typeGuardValidatorName } = getNames(name)
-      const typeName = name
+			const { validatorSchemaName, regularValidatorName, ensureValidatorName, typeGuardValidatorName } = getNames(name)
+			const typeName = name
 
-      exports.push(
-        forwardSchema || isCyclic
-          ? createRawValidatorSchema(ctx, exportSchema, typeName, validatorSchemaName)
-          : createValidatorSchema(ctx, exportSchema, typeName, validatorSchemaName, schemaObject)
-      )
+			exports.push(
+				forwardSchema || isCyclic
+					? createRawValidatorSchema(ctx, exportSchema, typeName, validatorSchemaName)
+					: createValidatorSchema(ctx, exportSchema, typeName, validatorSchemaName, schemaObject)
+			)
 
-      // TODO: Forward TypeScript types, if that's what the source is
-      exports.push(
-        inlineTypes || isCyclic
-          ? createPrettyType(ctx, coreTypes, typeName, useUnknown)
-          : createTypeNameFromSchema(exportType, typeName, validatorSchemaName)
-      )
+			// TODO: Forward TypeScript types, if that's what the source is
+			exports.push(
+				inlineTypes || isCyclic
+					? createPrettyType(ctx, coreTypes, typeName, useUnknown)
+					: createTypeNameFromSchema(exportType, typeName, validatorSchemaName)
+			)
 
-      if (exportValidator)
-        exports.push(createRegularValidator(typeName, validatorSchemaName, regularValidatorName, hasCustomAjvOptions))
+			if (exportValidator)
+				exports.push(createRegularValidator(typeName, validatorSchemaName, regularValidatorName, hasCustomAjvOptions))
 
-      if (exportEnsurer)
-        exports.push(createEnsureValidator(typeName, validatorSchemaName, ensureValidatorName, hasCustomAjvOptions))
+			if (exportEnsurer)
+				exports.push(createEnsureValidator(typeName, validatorSchemaName, ensureValidatorName, hasCustomAjvOptions))
 
-      if (exportTypeGuard)
-        exports.push(
-          createTypeGuardValidator(typeName, validatorSchemaName, typeGuardValidatorName, hasCustomAjvOptions)
-        )
+			if (exportTypeGuard)
+				exports.push(
+					createTypeGuardValidator(typeName, validatorSchemaName, typeGuardValidatorName, hasCustomAjvOptions)
+				)
 
-      convertedTypes.push(typeName)
+			convertedTypes.push(typeName)
 
-      return exports
-    }),
-  ]
+			return exports
+		}),
+	]
 
 	const importRegular = nonCyclic.length > 0;
 	const importRaw = forwardSchema || cyclic.length > 0;
@@ -390,21 +390,21 @@ function createRegularValidator(
 	typeName: string,
 	validatorSchemaName: string,
 	exportedName: string,
-  hasCustomAjvOptions: boolean,
+	hasCustomAjvOptions: boolean,
 )
 {
 	const exportNode = createVariable(
-    exportedName,
-    factory.createCallExpression(
-      t.ident( "/*@__PURE__*/ compile" ),
-      undefined, // type arguments
-      [
-        t.ident(validatorSchemaName),
-        ...( hasCustomAjvOptions ? [ factory.createObjectLiteralExpression( [ factory.createShorthandPropertyAssignment( "ajvOptions" ) ] ) ] : [ ] )
-      ]
-    ),
-    { export: true }
-  )
+		exportedName,
+		factory.createCallExpression(
+			t.ident( "/*@__PURE__*/ compile" ),
+			undefined, // type arguments
+			[
+				t.ident(validatorSchemaName),
+				...( hasCustomAjvOptions ? [ factory.createObjectLiteralExpression( [ factory.createShorthandPropertyAssignment( "ajvOptions" ) ] ) ] : [ ] )
+			]
+		),
+		{ export: true }
+	)
 	return helpers.wrapAnnotations(
 		exportNode,
 		{
@@ -418,7 +418,7 @@ function createEnsureValidator(
 	typeName: string,
 	validatorSchemaName: string,
 	exportedName: string,
-  hasCustomAjvOptions: boolean,
+	hasCustomAjvOptions: boolean,
 )
 {
 	const exportNode = factory.createVariableStatement(
@@ -443,7 +443,7 @@ function createEnsureValidator(
 								factory.createPropertyAssignment(
 									"ensure", t.true( )
 								),
-                ...( hasCustomAjvOptions ? [ factory.createShorthandPropertyAssignment( "ajvOptions" ) ] : [ ] )
+								...( hasCustomAjvOptions ? [ factory.createShorthandPropertyAssignment( "ajvOptions" ) ] : [ ] )
 							] ),
 						]
 					)
@@ -472,7 +472,7 @@ function createTypeGuardValidator(
 	typeName: string,
 	validatorSchemaName: string,
 	exportedName: string,
-  hasCustomAjvOptions: boolean
+	hasCustomAjvOptions: boolean
 )
 {
 	const exportNode = factory.createVariableStatement(
@@ -492,7 +492,7 @@ function createTypeGuardValidator(
 								factory.createPropertyAssignment(
 									"simple", t.true( )
 								),
-                ...( hasCustomAjvOptions ? [ factory.createShorthandPropertyAssignment( "ajvOptions" ) ] : [ ] )
+								...( hasCustomAjvOptions ? [ factory.createShorthandPropertyAssignment( "ajvOptions" ) ] : [ ] )
 							] )
 						]
 					)
