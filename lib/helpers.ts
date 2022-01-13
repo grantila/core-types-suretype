@@ -32,7 +32,7 @@ export function createCall(
 )
 {
 	return factory.createCallExpression(
-		t.ident( functionName ),
+		t.ident( `/*@__PURE__*/ ${functionName}` ),
 		typeArgs,
 		args
 	);
