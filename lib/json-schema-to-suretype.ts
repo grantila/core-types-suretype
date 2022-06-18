@@ -326,6 +326,8 @@ function createImportHeader(
 	annotate: boolean
 )
 {
+	const hasNonTypeImport = regular || raw || compile || annotate;
+
 	const importedMembers = [
 		...( regular ? [ 'suretype', 'v' ] : [ ] ),
 		...( raw ? [ 'raw' ] : [ ] ),
@@ -334,7 +336,11 @@ function createImportHeader(
 		...( TypeOf ? [ 'TypeOf' ] : [ ] ),
 	]
 	.map( name =>
-		factory.createImportSpecifier( false, undefined, t.ident( name ) )
+		factory.createImportSpecifier(
+			!hasNonTypeImport,
+			undefined,
+			t.ident( name )
+		)
 	);
 	return factory.createImportDeclaration(
 		undefined, // decorators
