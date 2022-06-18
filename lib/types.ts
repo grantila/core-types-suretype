@@ -1,6 +1,10 @@
 import type { WarnFunction } from 'core-types'
 import type { ExportRefMethod } from 'suretype'
+import type { Options as AjvOptions } from 'ajv'
 
+type PickByType<T, Value> = {
+	[P in keyof T as T[P] extends Value | undefined ? P : never]: T[P]
+}
 
 export interface JsonSchemaToSuretypeOptions
 {
@@ -98,6 +102,11 @@ export interface JsonSchemaToSuretypeOptions
 	 * @default true
 	 */
 	exportTypeGuard?: boolean;
+
+	/**
+	 * Subset of AJV options that can be set for all compile calls
+	 */
+	ajvOptions?: PickByType<AjvOptions, boolean | string>
 
 	/**
 	 * What to do when detecting an unsupported type
