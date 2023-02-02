@@ -2,7 +2,6 @@
 [![downloads][downloads-image]][npm-url]
 [![build status][build-image]][build-url]
 [![coverage status][coverage-image]][coverage-url]
-[![Language grade: JavaScript][lgtm-image]][lgtm-url]
 [![Node.JS version][node-version]][node-url]
 
 
@@ -178,7 +177,7 @@ The optional `opts` argument is the same as in `convertSureTypeToCoreTypes`.
 [npm-image]: https://img.shields.io/npm/v/core-types-suretype.svg
 [npm-url]: https://npmjs.org/package/core-types-suretype
 [downloads-image]: https://img.shields.io/npm/dm/core-types-suretype.svg
-[build-image]: https://img.shields.io/github/workflow/status/grantila/core-types-suretype/Master.svg
+[build-image]: https://img.shields.io/github/actions/workflow/status/grantila/core-types-suretype/master.yml?branch=master
 [build-url]: https://github.com/grantila/core-types-suretype/actions?query=workflow%3AMaster
 [coverage-image]: https://coveralls.io/repos/github/grantila/core-types-suretype/badge.svg?branch=master
 [coverage-url]: https://coveralls.io/github/grantila/core-types-suretype?branch=master
