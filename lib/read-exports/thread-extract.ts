@@ -1,5 +1,7 @@
-import { Worker } from 'worker_threads'
-import * as path from 'path'
+import { Worker } from 'node:worker_threads'
+import path from 'node:path'
+import { fileURLToPath } from 'node:url'
+
 import type { ExportRefMethod, OnTopLevelNameConflict } from 'suretype'
 
 import {
@@ -7,8 +9,10 @@ import {
 	IpcResponse,
 	IpcResponseSuccess,
 	serializeError,
-} from './types'
+} from './types.js'
 
+
+const __dirname = path.dirname( fileURLToPath( import.meta.url ) );
 
 const wrapper = path.join( __dirname, 'child-runner-wrapper.js' );
 

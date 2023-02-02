@@ -1,4 +1,4 @@
-import { getNames } from './utils'
+import { getNames } from './utils.js'
 
 describe( "exported names", ( ) =>
 {

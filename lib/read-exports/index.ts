@@ -1,1 +1,1 @@
-export { extractJsonSchema } from './thread-extract'
+export { extractJsonSchema } from './thread-extract.js'

@@ -5,6 +5,27 @@ Object {
   "types": Array [
     Object {
       "additionalProperties": true,
+      "name": "ChatLine",
+      "properties": Object {
+        "line": Object {
+          "node": Object {
+            "type": "string",
+          },
+          "required": true,
+        },
+        "user": Object {
+          "node": Object {
+            "ref": "User",
+            "type": "ref",
+          },
+          "required": false,
+        },
+      },
+      "title": "A chat line",
+      "type": "object",
+    },
+    Object {
+      "additionalProperties": true,
       "description": "A user representation",
       "examples": "[
   \\"{ firstName: \\\\\\"joe\\\\\\", id: \\\\\\"12345678\\\\\\" }\\"
@@ -25,27 +46,6 @@ Object {
         },
       },
       "title": "The user type",
-      "type": "object",
-    },
-    Object {
-      "additionalProperties": true,
-      "name": "ChatLine",
-      "properties": Object {
-        "line": Object {
-          "node": Object {
-            "type": "string",
-          },
-          "required": true,
-        },
-        "user": Object {
-          "node": Object {
-            "ref": "User",
-            "type": "ref",
-          },
-          "required": false,
-        },
-      },
-      "title": "A chat line",
       "type": "object",
     },
   ],

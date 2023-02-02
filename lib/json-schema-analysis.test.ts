@@ -1,4 +1,4 @@
-import { analyzeSchema } from './json-schema-analysis'
+import { analyzeSchema } from './json-schema-analysis.js'
 
 
 describe( "analyzeSchema", ( ) =>

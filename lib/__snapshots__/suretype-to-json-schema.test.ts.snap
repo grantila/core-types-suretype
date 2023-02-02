@@ -2,7 +2,7 @@
 
 exports[`convertSuretypeToJsonSchema should convert types with dependencies 1`] = `
 Object {
-  "$comment": "Generated from validator.ts by core-types-suretype (https://github.com/grantila/core-types-suretype)",
+  "$comment": "Generated from validator.js by core-types-suretype (https://github.com/grantila/core-types-suretype)",
   "definitions": Object {
     "ChatLine": Object {
       "properties": Object {

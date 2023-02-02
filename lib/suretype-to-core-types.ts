@@ -1,8 +1,8 @@
 import type { ConversionResult, NodeDocument } from 'core-types'
 import { convertJsonSchemaToCoreTypes } from 'core-types-json-schema'
 
-import { convertSuretypeToJsonSchema } from './suretype-to-json-schema'
-import type { SuretypeToJsonSchemaOptions } from './types'
+import { convertSuretypeToJsonSchema } from './suretype-to-json-schema.js'
+import type { SuretypeToJsonSchemaOptions } from './types.js'
 
 
 export async function convertSureTypeToCoreTypes(

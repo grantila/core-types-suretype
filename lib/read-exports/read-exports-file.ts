@@ -6,7 +6,7 @@ import {
 	OnTopLevelNameConflict,
 } from "suretype"
 
-import { IpcResponse, serializeError } from './types'
+import { IpcResponse, serializeError } from './types.js'
 
 
 export interface ExportedModule
@@ -16,19 +16,19 @@ export interface ExportedModule
 }
 export type ExportedModules = Array< ExportedModule >;
 
-export function readExportedSchemas(
+export async function readExportedSchemas(
 	filename: string,
 	refMethod: ExportRefMethod,
 	onTopLevelNameConflict: OnTopLevelNameConflict
 )
-: IpcResponse
+: Promise< IpcResponse >
 {
 	const ret: ExportedModules = [ ];
 
 	let mod: any;
 	try
 	{
-		mod = require( filename );
+		 mod = await import( filename );
 	}
 	catch ( err )
 	{

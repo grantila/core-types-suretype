@@ -1,10 +1,10 @@
 import type { ConversionResult } from 'core-types'
 import { decorateSchema } from 'core-types-json-schema'
-import * as path from 'path'
+import { basename } from 'path'
 
-import type { SuretypeToJsonSchemaOptions } from './types'
-import { extractJsonSchema } from './read-exports'
-import { catchError } from './async-error'
+import type { SuretypeToJsonSchemaOptions } from './types.js'
+import { extractJsonSchema } from './read-exports/index.js'
+import { catchError } from './async-error.js'
 
 
 export async function convertSuretypeToJsonSchema(
@@ -40,7 +40,7 @@ export async function convertSuretypeToJsonSchema(
 
 	decorateSchema(
 		result.jsonSchema,
-		{ sourceFilename: path.basename( filename ), ...options },
+		{ sourceFilename: basename( filename ), ...options },
 		'core-types-suretype',
 		'https://github.com/grantila/core-types-suretype',
 	);

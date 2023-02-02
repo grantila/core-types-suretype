@@ -9,23 +9,23 @@ import {
 	simplify,
 	CoreTypeAnnotations,
 	WarnFunction,
-} from "core-types"
-import { helpers, convertSingleCoreTypeToTypeScriptAst } from "core-types-ts"
+} from 'core-types'
+import { helpers, convertSingleCoreTypeToTypeScriptAst } from 'core-types-ts'
 import {
 	convertJsonSchemaToCoreTypes,
 	helpers as jsonSchemaHelpers,
-} from "core-types-json-schema"
+} from 'core-types-json-schema'
 import type {
 	JSONSchema7,
 	JSONSchema7Definition,
 	JSONSchema7Object,
 	JSONSchema7TypeName,
-} from "json-schema"
+} from 'json-schema'
 import { decodeRefNameJsonSchema } from 'openapi-json-schema'
 
-import { analyzeSchema } from './json-schema-analysis'
-import { JsonSchemaToSuretypeOptions } from "./types"
-import { createdByPackage, createdByUrl, getNames } from "./utils"
+import { analyzeSchema } from './json-schema-analysis.js'
+import { JsonSchemaToSuretypeOptions } from './types.js'
+import { createdByPackage, createdByUrl, getNames } from './utils.js'
 import {
 	ts,
 	factory,
@@ -37,7 +37,7 @@ import {
 	createVariable,
 	translateValue,
 	translateValues,
-} from './helpers'
+} from './helpers.js'
 
 
 type JSONSchema7SingleType =

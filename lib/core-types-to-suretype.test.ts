@@ -1,6 +1,7 @@
-import { NamedType, NodeDocument } from 'core-types';
-import { convertCoreTypesToSureType } from './core-types-to-suretype'
-import { JsonSchemaToSuretypeOptions } from './types';
+import { NamedType, NodeDocument } from 'core-types'
+
+import { convertCoreTypesToSureType } from './core-types-to-suretype.js'
+import { JsonSchemaToSuretypeOptions } from './types.js'
 
 
 const wrapDocument = ( types: Array< NamedType > ): NodeDocument =>

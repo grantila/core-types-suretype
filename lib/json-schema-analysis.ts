@@ -1,5 +1,5 @@
 import { analyzeTypesFast } from 'json-schema-cycles'
-import * as toposort from 'toposort'
+import toposort from 'toposort'
 
 
 export function analyzeSchema( schema: any )

@@ -1,12 +1,13 @@
-import { parentPort, workerData } from 'worker_threads'
+import { parentPort, workerData } from 'node:worker_threads'
 
-import type { IpcQuery } from './types'
-import { readExportedSchemas } from './read-exports-file'
+import type { IpcQuery } from './types.js'
+import { readExportedSchemas } from './read-exports-file.js'
 
 
 const { file, refMethod, onTopLevelNameConflict } = workerData as IpcQuery;
 
-const response =
-	readExportedSchemas( file, refMethod, onTopLevelNameConflict );
-
-parentPort!.postMessage( response );
+readExportedSchemas( file, refMethod, onTopLevelNameConflict )
+.then( response =>
+	{
+		parentPort!.postMessage( response );
+	} );

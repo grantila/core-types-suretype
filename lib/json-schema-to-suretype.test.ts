@@ -1,6 +1,9 @@
+import { jest } from '@jest/globals'
+
 import { MissingReferenceError } from 'core-types'
-import { convertJsonSchemaToSureType } from './json-schema-to-suretype'
-import { JsonSchemaToSuretypeOptions } from './types'
+
+import { convertJsonSchemaToSureType } from './json-schema-to-suretype.js'
+import { JsonSchemaToSuretypeOptions } from './types.js'
 
 
 describe( 'convertJsonSchemaToSureType', ( ) =>
