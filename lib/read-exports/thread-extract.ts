@@ -1,6 +1,6 @@
-import { Worker } from 'node:worker_threads'
-import path from 'node:path'
-import { fileURLToPath } from 'node:url'
+import { Worker } from 'worker_threads'
+import path from 'path'
+import { fileURLToPath } from 'url'
 
 import type { ExportRefMethod, OnTopLevelNameConflict } from 'suretype'
 

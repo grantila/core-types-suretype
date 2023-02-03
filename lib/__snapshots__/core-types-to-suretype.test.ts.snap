@@ -13,7 +13,7 @@ import { suretype, v, compile } from 'suretype';
 
 /** The validation schema for a User */
 export const schemaUser = suretype({
-    name: \\"User\\"
+    name: "User"
 }, v.string());
 
 export type User = string;
@@ -43,7 +43,7 @@ export const isUser = compile(schemaUser, { simple: true });
 
 /** The validation schema for a foo */
 export const schemaFoo = suretype({
-    name: \\"foo\\"
+    name: "foo"
 }, v.object({
     bar: v.string(),
     baz: v.anyOf([v.number(), v.object({}).additional(v.boolean())]).required(),
@@ -116,7 +116,7 @@ import { suretype, v, compile, annotate } from 'suretype';
 
 /** The validation schema for a Thing */
 export const schemaThing = suretype({
-    name: \\"Thing\\"
+    name: "Thing"
 }, v.unknown());
 
 export type Thing = unknown;
@@ -146,15 +146,15 @@ export const isThing = compile(schemaThing, { simple: true });
 
 /** The validation schema for a Thingy */
 export const schemaThingy = suretype({
-    name: \\"Thingy\\",
-    title: \\"Thingy\\",
-    description: \\"Thing ref\\"
+    name: "Thingy",
+    title: "Thingy",
+    description: "Thing ref"
 }, v.anyOf([annotate({
-        title: \\"Thingy\\",
-        description: \\"Thing is the preferred type\\\\n\\\\n@see The Thing documentation\\"
+        title: "Thingy",
+        description: "Thing is the preferred type\\n\\n@see The Thing documentation"
     }, schemaThing), annotate({
-        title: \\"Thingy\\",
-        description: \\"Just a number\\"
+        title: "Thingy",
+        description: "Just a number"
     }, v.number())]));
 
 export type Thingy = Thing | /** Just a number */
@@ -185,16 +185,16 @@ export const isThingy = compile(schemaThingy, { simple: true });
 
 /** The validation schema for a User */
 export const schemaUser = suretype({
-    name: \\"User\\",
-    title: \\"User\\",
-    examples: [\\"[\\\\n  \\\\\\"{ name: \\\\\\\\\\\\\\"Joe\\\\\\\\\\\\\\" }\\\\\\"\\\\n]\\"],
-    description: \\"User type\\\\n\\\\nThis type holds the user information, such as name\\\\n\\\\n@see http://username\\\\n\\\\n@default\\\\n    { user: \\\\\\"\\\\\\" }\\"
+    name: "User",
+    title: "User",
+    examples: ["[\\n  \\"{ name: \\\\\\"Joe\\\\\\" }\\"\\n]"],
+    description: "User type\\n\\nThis type holds the user information, such as name\\n\\n@see http://username\\n\\n@default\\n    { user: \\"\\" }"
 }, v.object({
     name: annotate({
-        title: \\"User.name\\",
-        description: \\"The real name\\\\n\\\\nMust be a valid name, not */\\"
+        title: "User.name",
+        description: "The real name\\n\\nMust be a valid name, not */"
     }, v.string().required())
-}).default(\\"{ user: \\\\\\"\\\\\\" }\\"));
+}).default("{ user: \\"\\" }"));
 
 /**
  * User type
@@ -203,11 +203,11 @@ export const schemaUser = suretype({
  *
  * @example
  *     [
- *       \\"{ name: \\\\\\"Joe\\\\\\" }\\"
+ *       "{ name: \\"Joe\\" }"
  *     ]
  *
  * @default
- *     { user: \\"\\" }
+ *     { user: "" }
  *
  * @see http://username
  */
@@ -215,7 +215,7 @@ export interface User {
     /**
      * The real name
      *
-     * Must be a valid name, not *\\\\/
+     * Must be a valid name, not *\\/
      */
     name: string;
 }
@@ -245,16 +245,16 @@ export const isUser = compile(schemaUser, { simple: true });
 
 /** The validation schema for a ChatLine */
 export const schemaChatLine = suretype({
-    name: \\"ChatLine\\",
-    title: \\"ChatLine\\",
-    description: \\"A chat line\\"
+    name: "ChatLine",
+    title: "ChatLine",
+    description: "A chat line"
 }, v.object({
     user: annotate({
-        title: \\"ChatLine.user\\",
-        description: \\"User ref\\"
+        title: "ChatLine.user",
+        description: "User ref"
     }, schemaUser),
     line: annotate({
-        examples: [\\"This is a line\\"]
+        examples: ["This is a line"]
     }, v.string().required())
 }));
 
@@ -306,10 +306,10 @@ import { suretype, v, compile } from 'suretype';
 
 /** The validation schema for a bar */
 export const schemaBar = suretype({
-    name: \\"bar\\"
-}, v.string().const(\\"bar\\"));
+    name: "bar"
+}, v.string().const("bar"));
 
-export type bar = \\"bar\\";
+export type bar = "bar";
 
 /**
  * ## Validate that a variable is a bar
@@ -336,10 +336,10 @@ export const isBar = compile(schemaBar, { simple: true });
 
 /** The validation schema for a foo */
 export const schemaFoo = suretype({
-    name: \\"foo\\"
-}, v.anyOf([schemaBar, v.string().enum(\\"foo\\", \\"baz\\")]));
+    name: "foo"
+}, v.anyOf([schemaBar, v.string().enum("foo", "baz")]));
 
-export type foo = bar | (\\"foo\\" | \\"baz\\");
+export type foo = bar | ("foo" | "baz");
 
 /**
  * ## Validate that a variable is a foo
@@ -379,7 +379,7 @@ import { suretype, v, compile } from 'suretype';
 
 /** The validation schema for a foo */
 export const schemaFoo = suretype({
-    name: \\"foo\\"
+    name: "foo"
 }, v.string());
 
 export type foo = string;
@@ -422,12 +422,12 @@ import { suretype, v, compile, annotate } from 'suretype';
 
 /** The validation schema for a User */
 export const schemaUser = suretype({
-    name: \\"User\\",
-    title: \\"User\\",
-    description: \\"User type\\\\n\\\\nThis type holds the user information, such as name\\"
+    name: "User",
+    title: "User",
+    description: "User type\\n\\nThis type holds the user information, such as name"
 }, v.object({
     name: annotate({
-        description: \\"The real name\\"
+        description: "The real name"
     }, v.string().required())
 }));
 
@@ -466,9 +466,9 @@ export const isUser = compile(schemaUser, { simple: true });
 
 /** The validation schema for a ChatLine */
 export const schemaChatLine = suretype({
-    name: \\"ChatLine\\",
-    title: \\"ChatLine\\",
-    description: \\"A chat line\\"
+    name: "ChatLine",
+    title: "ChatLine",
+    description: "A chat line"
 }, v.object({
     user: schemaUser,
     line: v.string().required()

@@ -19,91 +19,91 @@ import { suretype, v, raw, compile, TypeOf } from 'suretype';
 const rawSchemaObject = {
     definitions: {
         User: {
-            type: \\"object\\",
-            description: \\"The User type\\\\nyada yada\\",
+            type: "object",
+            description: "The User type\\nyada yada",
             properties: {
                 obj: {
-                    type: \\"object\\",
-                    description: \\"This is a relatively long title, triggering line breaks\\\\n\\\\nThis is a typical foo\\",
+                    type: "object",
+                    description: "This is a relatively long title, triggering line breaks\\n\\nThis is a typical foo",
                     default: {
-                        prop: \\"there is currently no default provided...\\"
+                        prop: "there is currently no default provided..."
                     },
                     properties: {
                         prop: {
-                            type: \\"string\\"
+                            type: "string"
                         }
                     }
                 },
                 arr: {
-                    type: \\"array\\",
+                    type: "array",
                     items: {
-                        type: \\"boolean\\"
+                        type: "boolean"
                     },
                     minItems: 2,
                     maxItems: 5
                 },
                 tup: {
-                    type: \\"array\\",
+                    type: "array",
                     items: [{
-                            type: \\"string\\"
+                            type: "string"
                         }, {
-                            type: \\"number\\"
+                            type: "number"
                         }],
                     additionalItems: {
-                        type: \\"boolean\\"
+                        type: "boolean"
                     }
                 },
                 str: {
-                    type: \\"string\\",
+                    type: "string",
                     minLength: 3,
                     anyOf: [{
-                            format: \\"email\\"
+                            format: "email"
                         }, {
-                            format: \\"ipv4\\"
+                            format: "ipv4"
                         }]
                 },
                 num: {
-                    type: \\"number\\",
+                    type: "number",
                     minimum: 5,
                     maximum: 10
                 },
                 int: {
-                    type: \\"integer\\",
+                    type: "integer",
                     enum: [1, 2, 3, 4, 5, 10]
                 },
                 email: {
-                    $ref: \\"#/definitions/Email\\"
+                    $ref: "#/definitions/Email"
                 },
                 bool: {
-                    type: \\"boolean\\",
+                    type: "boolean",
                     const: false
                 },
                 nul: {
-                    type: \\"null\\"
+                    type: "null"
                 },
                 any_of: {
                     anyOf: [{
-                            type: \\"string\\"
+                            type: "string"
                         }, {
-                            $ref: \\"#/definitions/User\\",
-                            description: \\"foo\\"
+                            $ref: "#/definitions/User",
+                            description: "foo"
                         }]
                 },
                 all_of: {
                     allOf: [{
-                            type: \\"object\\",
+                            type: "object",
                             properties: {
                                 x: {
-                                    description: \\"This is the x number\\",
-                                    type: \\"number\\"
+                                    description: "This is the x number",
+                                    type: "number"
                                 }
                             }
                         }, {
-                            $ref: \\"#/definitions/User\\"
+                            $ref: "#/definitions/User"
                         }]
                 }
             },
-            required: [\\"obj\\", \\"arr\\", \\"num\\", \\"bool\\"],
+            required: ["obj", "arr", "num", "bool"],
             additionalProperties: false
         },
         Email: {}
@@ -111,7 +111,7 @@ const rawSchemaObject = {
 };
 
 /** The validation schema for a User */
-export const schemaUser = raw<User>(rawSchemaObject, \\"User\\");
+export const schemaUser = raw<User>(rawSchemaObject, "User");
 
 /**
  * The User type
@@ -125,7 +125,7 @@ export interface User {
      *
      * @default
      *     {
-     *       \\"prop\\": \\"there is currently no default provided...\\"
+     *       "prop": "there is currently no default provided..."
      *     }
      */
     obj: {
@@ -176,7 +176,7 @@ export const ensureUser = compile<typeof schemaUser, User>(schemaUser, { ensure:
 export const isUser = compile(schemaUser, { simple: true });
 
 /** The validation schema for a Email */
-export const schemaEmail = raw<Email>(rawSchemaObject, \\"Email\\");
+export const schemaEmail = raw<Email>(rawSchemaObject, "Email");
 
 export type Email = any;
 
@@ -205,7 +205,7 @@ export const isEmail = compile(schemaEmail, { simple: true });
 
 /** The validation schema for a Link */
 export const schemaLink = suretype({
-    name: \\"Link\\"
+    name: "Link"
 }, v.object({
     url: v.string(),
     meta: v.any()
@@ -238,7 +238,7 @@ export const isLink = compile(schemaLink, { simple: true });
 
 /** The validation schema for a Product */
 export const schemaProduct = suretype({
-    name: \\"Product\\"
+    name: "Product"
 }, v.object({
     link: schemaLink
 }).additional(true));
@@ -283,7 +283,7 @@ import { suretype, v, compile, annotate, TypeOf } from 'suretype';
 
 /** The validation schema for a Link */
 export const schemaLink = suretype({
-    name: \\"Link\\"
+    name: "Link"
 }, v.object({
     url: v.string(),
     meta: v.unknown()
@@ -316,7 +316,7 @@ export const isLink = compile(schemaLink, { simple: true });
 
 /** The validation schema for a Product */
 export const schemaProduct = suretype({
-    name: \\"Product\\"
+    name: "Product"
 }, v.object({
     link: schemaLink
 }).additional(true));
@@ -348,7 +348,7 @@ export const isProduct = compile(schemaProduct, { simple: true });
 
 /** The validation schema for a Email */
 export const schemaEmail = suretype({
-    name: \\"Email\\"
+    name: "Email"
 }, v.unknown());
 
 export type Email = TypeOf<typeof schemaEmail>;
@@ -378,22 +378,22 @@ export const isEmail = compile(schemaEmail, { simple: true });
 
 /** The validation schema for a User */
 export const schemaUser = suretype({
-    name: \\"User\\",
-    description: \\"The User type\\\\nyada yada\\"
+    name: "User",
+    description: "The User type\\nyada yada"
 }, v.object({
     obj: annotate({
-        description: \\"This is a relatively long title, triggering line breaks\\\\n\\\\nThis is a typical foo\\\\n\\\\n@default\\\\n    {\\\\n      \\\\\\"prop\\\\\\": \\\\\\"there is currently no default provided...\\\\\\"\\\\n    }\\"
+        description: "This is a relatively long title, triggering line breaks\\n\\nThis is a typical foo\\n\\n@default\\n    {\\n      \\"prop\\": \\"there is currently no default provided...\\"\\n    }"
     }, v.object({
         prop: v.string()
     }).additional(true).default({
-        prop: \\"there is currently no default provided...\\"
+        prop: "there is currently no default provided..."
     }).required()),
     arr: v.array(v.boolean()).minItems(2).maxItems(5).required(),
     tup: v.array([
         v.string(),
         v.number()
     ]).additional(v.boolean()),
-    str: v.string().minLength(3).anyOf([v.string().format(\\"email\\"), v.string().format(\\"ipv4\\")]),
+    str: v.string().minLength(3).anyOf([v.string().format("email"), v.string().format("ipv4")]),
     num: v.number().gte(5).lt(10).required(),
     int: v.number().integer().enum(1, 2, 3, 4, 5, 10),
     email: schemaEmail,
@@ -402,7 +402,7 @@ export const schemaUser = suretype({
     any_of: v.anyOf([v.string(), v.number()]),
     all_of: v.allOf([v.object({
             x: annotate({
-                description: \\"This is the x number\\"
+                description: "This is the x number"
             }, v.number())
         }).additional(true), v.string()])
 }));
@@ -447,7 +447,7 @@ import { suretype, v, compile, annotate } from 'suretype';
 
 /** The validation schema for a Link */
 export const schemaLink = suretype({
-    name: \\"Link\\"
+    name: "Link"
 }, v.object({
     url: v.string(),
     meta: v.any()
@@ -484,7 +484,7 @@ export const isLink = compile(schemaLink, { simple: true });
 
 /** The validation schema for a Product */
 export const schemaProduct = suretype({
-    name: \\"Product\\"
+    name: "Product"
 }, v.object({
     link: schemaLink
 }).additional(true));
@@ -519,7 +519,7 @@ export const isProduct = compile(schemaProduct, { simple: true });
 
 /** The validation schema for a Email */
 export const schemaEmail = suretype({
-    name: \\"Email\\"
+    name: "Email"
 }, v.any());
 
 export type Email = any;
@@ -549,22 +549,22 @@ export const isEmail = compile(schemaEmail, { simple: true });
 
 /** The validation schema for a User */
 export const schemaUser = suretype({
-    name: \\"User\\",
-    description: \\"The User type\\\\nyada yada\\"
+    name: "User",
+    description: "The User type\\nyada yada"
 }, v.object({
     obj: annotate({
-        description: \\"This is a relatively long title, triggering line breaks\\\\n\\\\nThis is a typical foo\\\\n\\\\n@default\\\\n    {\\\\n      \\\\\\"prop\\\\\\": \\\\\\"there is currently no default provided...\\\\\\"\\\\n    }\\"
+        description: "This is a relatively long title, triggering line breaks\\n\\nThis is a typical foo\\n\\n@default\\n    {\\n      \\"prop\\": \\"there is currently no default provided...\\"\\n    }"
     }, v.object({
         prop: v.string()
     }).additional(true).default({
-        prop: \\"there is currently no default provided...\\"
+        prop: "there is currently no default provided..."
     }).required()),
     arr: v.array(v.boolean()).minItems(2).maxItems(5).required(),
     tup: v.array([
         v.string(),
         v.number()
     ]).additional(v.boolean()),
-    str: v.string().minLength(3).anyOf([v.string().format(\\"email\\"), v.string().format(\\"ipv4\\")]),
+    str: v.string().minLength(3).anyOf([v.string().format("email"), v.string().format("ipv4")]),
     num: v.number().gte(5).lt(10).required(),
     int: v.number().integer().enum(1, 2, 3, 4, 5, 10),
     email: schemaEmail,
@@ -573,7 +573,7 @@ export const schemaUser = suretype({
     any_of: v.anyOf([v.string(), v.number()]),
     all_of: v.allOf([v.object({
             x: annotate({
-                description: \\"This is the x number\\"
+                description: "This is the x number"
             }, v.number())
         }).additional(true), v.string()])
 }));
@@ -590,7 +590,7 @@ export interface User {
      *
      * @default
      *     {
-     *       \\"prop\\": \\"there is currently no default provided...\\"
+     *       "prop": "there is currently no default provided..."
      *     }
      */
     obj: {
@@ -654,7 +654,7 @@ exports[`convertJsonSchemaToSureType non-recursive types export matrix 3`] = `
 import { suretype, v, compile, annotate, TypeOf } from 'suretype';
 
 const schemaLink = suretype({
-    name: \\"Link\\"
+    name: "Link"
 }, v.object({
     url: v.string(),
     meta: v.any()
@@ -686,7 +686,7 @@ export const ensureLink = compile<typeof schemaLink, Link>(schemaLink, { ensure:
 export const isLink = compile(schemaLink, { simple: true });
 
 const schemaProduct = suretype({
-    name: \\"Product\\"
+    name: "Product"
 }, v.object({
     link: schemaLink
 }).additional(true));
@@ -717,7 +717,7 @@ export const ensureProduct = compile<typeof schemaProduct, Product>(schemaProduc
 export const isProduct = compile(schemaProduct, { simple: true });
 
 const schemaEmail = suretype({
-    name: \\"Email\\"
+    name: "Email"
 }, v.any());
 
 export type Email = TypeOf<typeof schemaEmail>;
@@ -746,22 +746,22 @@ export const ensureEmail = compile<typeof schemaEmail, Email>(schemaEmail, { ens
 export const isEmail = compile(schemaEmail, { simple: true });
 
 const schemaUser = suretype({
-    name: \\"User\\",
-    description: \\"The User type\\\\nyada yada\\"
+    name: "User",
+    description: "The User type\\nyada yada"
 }, v.object({
     obj: annotate({
-        description: \\"This is a relatively long title, triggering line breaks\\\\n\\\\nThis is a typical foo\\\\n\\\\n@default\\\\n    {\\\\n      \\\\\\"prop\\\\\\": \\\\\\"there is currently no default provided...\\\\\\"\\\\n    }\\"
+        description: "This is a relatively long title, triggering line breaks\\n\\nThis is a typical foo\\n\\n@default\\n    {\\n      \\"prop\\": \\"there is currently no default provided...\\"\\n    }"
     }, v.object({
         prop: v.string()
     }).additional(true).default({
-        prop: \\"there is currently no default provided...\\"
+        prop: "there is currently no default provided..."
     }).required()),
     arr: v.array(v.boolean()).minItems(2).maxItems(5).required(),
     tup: v.array([
         v.string(),
         v.number()
     ]).additional(v.boolean()),
-    str: v.string().minLength(3).anyOf([v.string().format(\\"email\\"), v.string().format(\\"ipv4\\")]),
+    str: v.string().minLength(3).anyOf([v.string().format("email"), v.string().format("ipv4")]),
     num: v.number().gte(5).lt(10).required(),
     int: v.number().integer().enum(1, 2, 3, 4, 5, 10),
     email: schemaEmail,
@@ -770,7 +770,7 @@ const schemaUser = suretype({
     any_of: v.anyOf([v.string(), v.number()]),
     all_of: v.allOf([v.object({
             x: annotate({
-                description: \\"This is the x number\\"
+                description: "This is the x number"
             }, v.number())
         }).additional(true), v.string()])
 }));
@@ -815,7 +815,7 @@ import { suretype, v, compile, annotate, TypeOf } from 'suretype';
 
 /** The validation schema for a Link */
 export const schemaLink = suretype({
-    name: \\"Link\\"
+    name: "Link"
 }, v.object({
     url: v.string(),
     meta: v.any()
@@ -848,7 +848,7 @@ export const isLink = compile(schemaLink, { simple: true });
 
 /** The validation schema for a Product */
 export const schemaProduct = suretype({
-    name: \\"Product\\"
+    name: "Product"
 }, v.object({
     link: schemaLink
 }).additional(true));
@@ -880,7 +880,7 @@ export const isProduct = compile(schemaProduct, { simple: true });
 
 /** The validation schema for a Email */
 export const schemaEmail = suretype({
-    name: \\"Email\\"
+    name: "Email"
 }, v.any());
 
 type Email = TypeOf<typeof schemaEmail>;
@@ -910,22 +910,22 @@ export const isEmail = compile(schemaEmail, { simple: true });
 
 /** The validation schema for a User */
 export const schemaUser = suretype({
-    name: \\"User\\",
-    description: \\"The User type\\\\nyada yada\\"
+    name: "User",
+    description: "The User type\\nyada yada"
 }, v.object({
     obj: annotate({
-        description: \\"This is a relatively long title, triggering line breaks\\\\n\\\\nThis is a typical foo\\\\n\\\\n@default\\\\n    {\\\\n      \\\\\\"prop\\\\\\": \\\\\\"there is currently no default provided...\\\\\\"\\\\n    }\\"
+        description: "This is a relatively long title, triggering line breaks\\n\\nThis is a typical foo\\n\\n@default\\n    {\\n      \\"prop\\": \\"there is currently no default provided...\\"\\n    }"
     }, v.object({
         prop: v.string()
     }).additional(true).default({
-        prop: \\"there is currently no default provided...\\"
+        prop: "there is currently no default provided..."
     }).required()),
     arr: v.array(v.boolean()).minItems(2).maxItems(5).required(),
     tup: v.array([
         v.string(),
         v.number()
     ]).additional(v.boolean()),
-    str: v.string().minLength(3).anyOf([v.string().format(\\"email\\"), v.string().format(\\"ipv4\\")]),
+    str: v.string().minLength(3).anyOf([v.string().format("email"), v.string().format("ipv4")]),
     num: v.number().gte(5).lt(10).required(),
     int: v.number().integer().enum(1, 2, 3, 4, 5, 10),
     email: schemaEmail,
@@ -934,7 +934,7 @@ export const schemaUser = suretype({
     any_of: v.anyOf([v.string(), v.number()]),
     all_of: v.allOf([v.object({
             x: annotate({
-                description: \\"This is the x number\\"
+                description: "This is the x number"
             }, v.number())
         }).additional(true), v.string()])
 }));
@@ -979,7 +979,7 @@ import { suretype, v, compile, annotate, TypeOf } from 'suretype';
 
 /** The validation schema for a Link */
 export const schemaLink = suretype({
-    name: \\"Link\\"
+    name: "Link"
 }, v.object({
     url: v.string(),
     meta: v.any()
@@ -1005,7 +1005,7 @@ export const isLink = compile(schemaLink, { simple: true });
 
 /** The validation schema for a Product */
 export const schemaProduct = suretype({
-    name: \\"Product\\"
+    name: "Product"
 }, v.object({
     link: schemaLink
 }).additional(true));
@@ -1030,7 +1030,7 @@ export const isProduct = compile(schemaProduct, { simple: true });
 
 /** The validation schema for a Email */
 export const schemaEmail = suretype({
-    name: \\"Email\\"
+    name: "Email"
 }, v.any());
 
 export type Email = TypeOf<typeof schemaEmail>;
@@ -1053,22 +1053,22 @@ export const isEmail = compile(schemaEmail, { simple: true });
 
 /** The validation schema for a User */
 export const schemaUser = suretype({
-    name: \\"User\\",
-    description: \\"The User type\\\\nyada yada\\"
+    name: "User",
+    description: "The User type\\nyada yada"
 }, v.object({
     obj: annotate({
-        description: \\"This is a relatively long title, triggering line breaks\\\\n\\\\nThis is a typical foo\\\\n\\\\n@default\\\\n    {\\\\n      \\\\\\"prop\\\\\\": \\\\\\"there is currently no default provided...\\\\\\"\\\\n    }\\"
+        description: "This is a relatively long title, triggering line breaks\\n\\nThis is a typical foo\\n\\n@default\\n    {\\n      \\"prop\\": \\"there is currently no default provided...\\"\\n    }"
     }, v.object({
         prop: v.string()
     }).additional(true).default({
-        prop: \\"there is currently no default provided...\\"
+        prop: "there is currently no default provided..."
     }).required()),
     arr: v.array(v.boolean()).minItems(2).maxItems(5).required(),
     tup: v.array([
         v.string(),
         v.number()
     ]).additional(v.boolean()),
-    str: v.string().minLength(3).anyOf([v.string().format(\\"email\\"), v.string().format(\\"ipv4\\")]),
+    str: v.string().minLength(3).anyOf([v.string().format("email"), v.string().format("ipv4")]),
     num: v.number().gte(5).lt(10).required(),
     int: v.number().integer().enum(1, 2, 3, 4, 5, 10),
     email: schemaEmail,
@@ -1077,7 +1077,7 @@ export const schemaUser = suretype({
     any_of: v.anyOf([v.string(), v.number()]),
     all_of: v.allOf([v.object({
             x: annotate({
-                description: \\"This is the x number\\"
+                description: "This is the x number"
             }, v.number())
         }).additional(true), v.string()])
 }));
@@ -1115,7 +1115,7 @@ import { suretype, v, compile, annotate, TypeOf } from 'suretype';
 
 /** The validation schema for a Link */
 export const schemaLink = suretype({
-    name: \\"Link\\"
+    name: "Link"
 }, v.object({
     url: v.string(),
     meta: v.any()
@@ -1139,7 +1139,7 @@ export const isLink = compile(schemaLink, { simple: true });
 
 /** The validation schema for a Product */
 export const schemaProduct = suretype({
-    name: \\"Product\\"
+    name: "Product"
 }, v.object({
     link: schemaLink
 }).additional(true));
@@ -1162,7 +1162,7 @@ export const isProduct = compile(schemaProduct, { simple: true });
 
 /** The validation schema for a Email */
 export const schemaEmail = suretype({
-    name: \\"Email\\"
+    name: "Email"
 }, v.any());
 
 export type Email = TypeOf<typeof schemaEmail>;
@@ -1183,22 +1183,22 @@ export const isEmail = compile(schemaEmail, { simple: true });
 
 /** The validation schema for a User */
 export const schemaUser = suretype({
-    name: \\"User\\",
-    description: \\"The User type\\\\nyada yada\\"
+    name: "User",
+    description: "The User type\\nyada yada"
 }, v.object({
     obj: annotate({
-        description: \\"This is a relatively long title, triggering line breaks\\\\n\\\\nThis is a typical foo\\\\n\\\\n@default\\\\n    {\\\\n      \\\\\\"prop\\\\\\": \\\\\\"there is currently no default provided...\\\\\\"\\\\n    }\\"
+        description: "This is a relatively long title, triggering line breaks\\n\\nThis is a typical foo\\n\\n@default\\n    {\\n      \\"prop\\": \\"there is currently no default provided...\\"\\n    }"
     }, v.object({
         prop: v.string()
     }).additional(true).default({
-        prop: \\"there is currently no default provided...\\"
+        prop: "there is currently no default provided..."
     }).required()),
     arr: v.array(v.boolean()).minItems(2).maxItems(5).required(),
     tup: v.array([
         v.string(),
         v.number()
     ]).additional(v.boolean()),
-    str: v.string().minLength(3).anyOf([v.string().format(\\"email\\"), v.string().format(\\"ipv4\\")]),
+    str: v.string().minLength(3).anyOf([v.string().format("email"), v.string().format("ipv4")]),
     num: v.number().gte(5).lt(10).required(),
     int: v.number().integer().enum(1, 2, 3, 4, 5, 10),
     email: schemaEmail,
@@ -1207,7 +1207,7 @@ export const schemaUser = suretype({
     any_of: v.anyOf([v.string(), v.number()]),
     all_of: v.allOf([v.object({
             x: annotate({
-                description: \\"This is the x number\\"
+                description: "This is the x number"
             }, v.number())
         }).additional(true), v.string()])
 }));
@@ -1243,7 +1243,7 @@ import { suretype, v, compile, annotate, TypeOf } from 'suretype';
 
 /** The validation schema for a Link */
 export const schemaLink = suretype({
-    name: \\"Link\\"
+    name: "Link"
 }, v.object({
     url: v.string(),
     meta: v.any()
@@ -1269,7 +1269,7 @@ export const ensureLink = compile<typeof schemaLink, Link>(schemaLink, { ensure:
 
 /** The validation schema for a Product */
 export const schemaProduct = suretype({
-    name: \\"Product\\"
+    name: "Product"
 }, v.object({
     link: schemaLink
 }).additional(true));
@@ -1294,7 +1294,7 @@ export const ensureProduct = compile<typeof schemaProduct, Product>(schemaProduc
 
 /** The validation schema for a Email */
 export const schemaEmail = suretype({
-    name: \\"Email\\"
+    name: "Email"
 }, v.any());
 
 export type Email = TypeOf<typeof schemaEmail>;
@@ -1317,22 +1317,22 @@ export const ensureEmail = compile<typeof schemaEmail, Email>(schemaEmail, { ens
 
 /** The validation schema for a User */
 export const schemaUser = suretype({
-    name: \\"User\\",
-    description: \\"The User type\\\\nyada yada\\"
+    name: "User",
+    description: "The User type\\nyada yada"
 }, v.object({
     obj: annotate({
-        description: \\"This is a relatively long title, triggering line breaks\\\\n\\\\nThis is a typical foo\\\\n\\\\n@default\\\\n    {\\\\n      \\\\\\"prop\\\\\\": \\\\\\"there is currently no default provided...\\\\\\"\\\\n    }\\"
+        description: "This is a relatively long title, triggering line breaks\\n\\nThis is a typical foo\\n\\n@default\\n    {\\n      \\"prop\\": \\"there is currently no default provided...\\"\\n    }"
     }, v.object({
         prop: v.string()
     }).additional(true).default({
-        prop: \\"there is currently no default provided...\\"
+        prop: "there is currently no default provided..."
     }).required()),
     arr: v.array(v.boolean()).minItems(2).maxItems(5).required(),
     tup: v.array([
         v.string(),
         v.number()
     ]).additional(v.boolean()),
-    str: v.string().minLength(3).anyOf([v.string().format(\\"email\\"), v.string().format(\\"ipv4\\")]),
+    str: v.string().minLength(3).anyOf([v.string().format("email"), v.string().format("ipv4")]),
     num: v.number().gte(5).lt(10).required(),
     int: v.number().integer().enum(1, 2, 3, 4, 5, 10),
     email: schemaEmail,
@@ -1341,7 +1341,7 @@ export const schemaUser = suretype({
     any_of: v.anyOf([v.string(), v.number()]),
     all_of: v.allOf([v.object({
             x: annotate({
-                description: \\"This is the x number\\"
+                description: "This is the x number"
             }, v.number())
         }).additional(true), v.string()])
 }));
@@ -1380,115 +1380,115 @@ import { suretype, v, raw, compile } from 'suretype';
 const rawSchemaObject = {
     definitions: {
         Link: {
-            type: \\"object\\",
+            type: "object",
             properties: {
                 url: {
-                    type: \\"string\\"
+                    type: "string"
                 },
                 meta: {}
             }
         },
         Product: {
-            type: \\"object\\",
+            type: "object",
             properties: {
                 link: {
-                    $ref: \\"#/definitions/Link\\"
+                    $ref: "#/definitions/Link"
                 }
             }
         },
         Email: {},
         User: {
-            type: \\"object\\",
-            description: \\"The User type\\\\nyada yada\\",
+            type: "object",
+            description: "The User type\\nyada yada",
             properties: {
                 obj: {
-                    type: \\"object\\",
-                    description: \\"This is a relatively long title, triggering line breaks\\\\n\\\\nThis is a typical foo\\",
+                    type: "object",
+                    description: "This is a relatively long title, triggering line breaks\\n\\nThis is a typical foo",
                     default: {
-                        prop: \\"there is currently no default provided...\\"
+                        prop: "there is currently no default provided..."
                     },
                     properties: {
                         prop: {
-                            type: \\"string\\"
+                            type: "string"
                         }
                     }
                 },
                 arr: {
-                    type: \\"array\\",
+                    type: "array",
                     items: {
-                        type: \\"boolean\\"
+                        type: "boolean"
                     },
                     minItems: 2,
                     maxItems: 5
                 },
                 tup: {
-                    type: \\"array\\",
+                    type: "array",
                     items: [{
-                            type: \\"string\\"
+                            type: "string"
                         }, {
-                            type: \\"number\\"
+                            type: "number"
                         }],
                     additionalItems: {
-                        type: \\"boolean\\"
+                        type: "boolean"
                     }
                 },
                 str: {
-                    type: \\"string\\",
+                    type: "string",
                     minLength: 3,
                     anyOf: [{
-                            format: \\"email\\"
+                            format: "email"
                         }, {
-                            format: \\"ipv4\\"
+                            format: "ipv4"
                         }]
                 },
                 num: {
-                    type: \\"number\\",
+                    type: "number",
                     minimum: 5,
                     maximum: 10
                 },
                 int: {
-                    type: \\"integer\\",
+                    type: "integer",
                     enum: [1, 2, 3, 4, 5, 10]
                 },
                 email: {
-                    $ref: \\"#/definitions/Email\\"
+                    $ref: "#/definitions/Email"
                 },
                 bool: {
-                    type: \\"boolean\\",
+                    type: "boolean",
                     const: false
                 },
                 nul: {
-                    type: \\"null\\"
+                    type: "null"
                 },
                 any_of: {
                     anyOf: [{
-                            type: \\"string\\"
+                            type: "string"
                         }, {
-                            type: \\"number\\"
+                            type: "number"
                         }]
                 },
                 all_of: {
                     allOf: [{
-                            type: \\"object\\",
+                            type: "object",
                             properties: {
                                 x: {
-                                    description: \\"This is the x number\\",
-                                    type: \\"number\\"
+                                    description: "This is the x number",
+                                    type: "number"
                                 }
                             }
                         }, {
-                            type: \\"string\\"
+                            type: "string"
                         }]
                 }
             },
-            required: [\\"obj\\", \\"arr\\", \\"num\\", \\"bool\\"],
+            required: ["obj", "arr", "num", "bool"],
             additionalProperties: false
         }
     }
 };
 
 /** The validation schema for a Link */
-export const schemaLink = raw<Link>(rawSchemaObject, \\"Link\\");
+export const schemaLink = raw<Link>(rawSchemaObject, "Link");
 
 export interface Link {
     url?: string;
@@ -1520,7 +1520,7 @@ export const ensureLink = compile<typeof schemaLink, Link>(schemaLink, { ensure:
 export const isLink = compile(schemaLink, { simple: true });
 
 /** The validation schema for a Product */
-export const schemaProduct = raw<Product>(rawSchemaObject, \\"Product\\");
+export const schemaProduct = raw<Product>(rawSchemaObject, "Product");
 
 export interface Product {
     link?: Link;
@@ -1551,7 +1551,7 @@ export const ensureProduct = compile<typeof schemaProduct, Product>(schemaProduc
 export const isProduct = compile(schemaProduct, { simple: true });
 
 /** The validation schema for a Email */
-export const schemaEmail = raw<Email>(rawSchemaObject, \\"Email\\");
+export const schemaEmail = raw<Email>(rawSchemaObject, "Email");
 
 export type Email = any;
 
@@ -1579,7 +1579,7 @@ export const ensureEmail = compile<typeof schemaEmail, Email>(schemaEmail, { ens
 export const isEmail = compile(schemaEmail, { simple: true });
 
 /** The validation schema for a User */
-export const schemaUser = raw<User>(rawSchemaObject, \\"User\\");
+export const schemaUser = raw<User>(rawSchemaObject, "User");
 
 /**
  * The User type
@@ -1593,7 +1593,7 @@ export interface User {
      *
      * @default
      *     {
-     *       \\"prop\\": \\"there is currently no default provided...\\"
+     *       "prop": "there is currently no default provided..."
      *     }
      */
     obj: {
@@ -1660,13 +1660,13 @@ import { suretype, v, raw, compile } from 'suretype';
 const rawSchemaObject = {
     definitions: {
         User: {
-            type: \\"string\\"
+            type: "string"
         }
     }
 };
 
 /** The validation schema for a User */
-export const schemaUser = raw<User>(rawSchemaObject, \\"User\\");
+export const schemaUser = raw<User>(rawSchemaObject, "User");
 
 export type User = string;
 
@@ -1708,7 +1708,7 @@ import { suretype, v, compile } from 'suretype';
 
 /** The validation schema for a Link */
 export const schemaLink = suretype({
-    name: \\"Link\\"
+    name: "Link"
 }, v.unknown());
 
 export type Link = unknown;
@@ -1738,7 +1738,7 @@ export const isLink = compile(schemaLink, { simple: true });
 
 /** The validation schema for a User */
 export const schemaUser = suretype({
-    name: \\"User\\"
+    name: "User"
 }, v.object({
     prop: schemaLink
 }).additional(true));

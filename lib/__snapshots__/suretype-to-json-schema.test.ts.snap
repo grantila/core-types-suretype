@@ -1,39 +1,39 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`convertSuretypeToJsonSchema should convert types with dependencies 1`] = `
-Object {
+{
   "$comment": "Generated from validator.js by core-types-suretype (https://github.com/grantila/core-types-suretype)",
-  "definitions": Object {
-    "ChatLine": Object {
-      "properties": Object {
-        "line": Object {
+  "definitions": {
+    "ChatLine": {
+      "properties": {
+        "line": {
           "type": "string",
         },
-        "user": Object {
+        "user": {
           "$ref": "#/definitions/User",
         },
       },
-      "required": Array [
+      "required": [
         "line",
       ],
       "title": "A chat line",
       "type": "object",
     },
-    "User": Object {
+    "User": {
       "description": "A user representation",
-      "examples": Array [
-        "{ firstName: \\"joe\\", id: \\"12345678\\" }",
+      "examples": [
+        "{ firstName: "joe", id: "12345678" }",
       ],
-      "properties": Object {
-        "firstName": Object {
+      "properties": {
+        "firstName": {
           "type": "string",
         },
-        "id": Object {
+        "id": {
           "minLength": 8,
           "type": "string",
         },
       },
-      "required": Array [
+      "required": [
         "firstName",
         "id",
       ],

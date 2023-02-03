@@ -1,20 +1,20 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`convertSuretypeToJsonSchema should convert types with dependencies 1`] = `
-Object {
-  "types": Array [
-    Object {
+{
+  "types": [
+    {
       "additionalProperties": true,
       "name": "ChatLine",
-      "properties": Object {
-        "line": Object {
-          "node": Object {
+      "properties": {
+        "line": {
+          "node": {
             "type": "string",
           },
           "required": true,
         },
-        "user": Object {
-          "node": Object {
+        "user": {
+          "node": {
             "ref": "User",
             "type": "ref",
           },
@@ -24,22 +24,22 @@ Object {
       "title": "A chat line",
       "type": "object",
     },
-    Object {
+    {
       "additionalProperties": true,
       "description": "A user representation",
       "examples": "[
-  \\"{ firstName: \\\\\\"joe\\\\\\", id: \\\\\\"12345678\\\\\\" }\\"
+  "{ firstName: \\"joe\\", id: \\"12345678\\" }"
 ]",
       "name": "User",
-      "properties": Object {
-        "firstName": Object {
-          "node": Object {
+      "properties": {
+        "firstName": {
+          "node": {
             "type": "string",
           },
           "required": true,
         },
-        "id": Object {
-          "node": Object {
+        "id": {
+          "node": {
             "type": "string",
           },
           "required": true,

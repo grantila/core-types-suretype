@@ -1,4 +1,4 @@
-import { getAstByObject, getAstByString } from 'jsonpos'
+import { getParsedByObject, getParsedByString } from 'jsonpos'
 import {
 	NodeDocument,
 	CoreTypesErrorMeta,
@@ -79,8 +79,8 @@ export function convertJsonSchemaToSureType(
 {
 	const parsed =
 		typeof jsonSchema === 'string'
-		? getAstByString( jsonSchema )
-		: getAstByObject( jsonSchema );
+		? getParsedByString( jsonSchema )
+		: getParsedByObject( jsonSchema );
 	const { json, jsonString } = parsed;
 
 	const { definitions } = json;
@@ -367,7 +367,6 @@ function createImportHeader(
 		)
 	);
 	return factory.createImportDeclaration(
-		undefined, // decorators
 		undefined, // modifiers
 		factory.createImportClause(
 			false,
@@ -403,7 +402,6 @@ function createTypeNameFromSchema(
 )
 {
 	return factory.createTypeAliasDeclaration(
-		undefined, // decorators
 		export_ ? createExportModifier( ) : undefined, // modifiers
 		t.ident( typeName ),
 		undefined, // type parameters
