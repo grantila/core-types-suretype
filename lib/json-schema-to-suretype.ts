@@ -391,8 +391,8 @@ function createPrettyType(
 
 	return convertSingleCoreTypeToTypeScriptAst(
 		coreType!,
-		{ declaration: false, useUnknown }
-	) as ts.Node;
+		{ declaration: false, useUnknown, namespaces: 'ignore' }
+	).declaration as ts.Node;
 }
 
 function createTypeNameFromSchema(
