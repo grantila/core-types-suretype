@@ -252,7 +252,7 @@ export const schemaChatLine = suretype({
     user: annotate({
         title: "ChatLine.user",
         description: "User ref"
-    }, schemaUser),
+    }, schemaUser.required()),
     line: annotate({
         examples: ["This is a line"]
     }, v.string().required())
@@ -470,7 +470,7 @@ export const schemaChatLine = suretype({
     title: "ChatLine",
     description: "A chat line"
 }, v.object({
-    user: schemaUser,
+    user: schemaUser.required(),
     line: v.string().required()
 }));
 

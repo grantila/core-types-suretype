@@ -1695,6 +1695,43 @@ export const isUser = compile(schemaUser, { simple: true });
 "
 `;
 
+exports[`convertJsonSchemaToSureType should handle _required_ on referenced type 1`] = `
+"import { suretype, v, compile, annotate, TypeOf } from 'suretype';
+
+const schemaA = suretype({
+    name: "A",
+    title: "A"
+}, v.object({}));
+
+export type A = TypeOf<typeof schemaA>;
+
+/**
+ * ## Validate that a variable is a A
+ *
+ * @returns ValidationResult
+ */
+export const validateA = compile(schemaA);
+
+const schemaB = suretype({
+    name: "B",
+    title: "B"
+}, v.object({
+    a: annotate({
+        title: "B.a"
+    }, schemaA.required())
+}));
+
+export type B = TypeOf<typeof schemaB>;
+
+/**
+ * ## Validate that a variable is a B
+ *
+ * @returns ValidationResult
+ */
+export const validateB = compile(schemaB);
+"
+`;
+
 exports[`convertJsonSchemaToSureType should warn and ignore on missing ref 1`] = `
 "/* tslint:disable */
 /* eslint-disable */

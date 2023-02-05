@@ -667,7 +667,7 @@ function createValidator(
 	};
 
 	if ( typeof def.$ref === 'string' )
-		return wrapAnnotations( wrapRef( ctx, def.$ref ) );
+		return wrap( wrapRef( ctx, def.$ref ) );
 
 	if ( Array.isArray( def.type ) )
 		// Convert into 'anyOf'

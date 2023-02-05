@@ -297,4 +297,50 @@ describe( 'convertJsonSchemaToSureType', ( ) =>
 
 		expect( data ).toMatchSnapshot( );
 	} );
+
+	it( 'should handle _required_ on referenced type', ( ) =>
+	{
+		// Regression of: https://github.com/grantila/typeconv/issues/14
+		const definitions = {
+				A: {
+					type: "object",
+					additionalProperties: false,
+					title: "A"
+				},
+				B: {
+					type: "object",
+					properties: {
+						a: {
+							$ref: "#/definitions/A",
+							title: "B.a"
+						}
+					},
+					required: [
+						"a"
+					],
+					additionalProperties: false,
+					title: "B"
+				}
+		} as any;
+
+		const { data, convertedTypes } = convertJsonSchemaToSureType(
+			{ definitions },
+			{
+				useUnknown: false,
+				inlineTypes: false,
+				exportSchema: false,
+				exportType: true,
+				exportValidator: true,
+				exportEnsurer: false,
+				exportTypeGuard: false,
+				forwardSchema: false,
+				noDescriptiveHeader: true,
+				noDisableLintHeader: true,
+			}
+		);
+
+		expect( convertedTypes.sort( ) ).toStrictEqual( [ 'A', 'B' ].sort( ) );
+
+		expect( data ).toMatchSnapshot( );
+	} );
 } );
